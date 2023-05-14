@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.UiNiMapper">
+	
+	<select id="selectNotis" resultType="com.erp.chae.vo.NoticeInfoVO"> <!-- 사용자 번호로 읽지 않은 공지사항/ 차집합 -->
+		SELECT * FROM  NOTICE_INFO NI
+		WHERE NOT EXISTS (SELECT * FROM UI_NI_MAP UNM WHERE UNM.UI_NUM=#{uiNum} AND NI.NI_NUM=UNM.NI_NUM)
+		AND UI_NUM != #{uiNum}
+		ORDER BY NI_NUM DESC
+	</select>
+	
+	<insert id="insertUiNiMap" >
+		INSERT INTO UI_NI_MAP(UI_NUM, NI_NUM)
+		VALUES(#{uiNum}, #{niNum})
+	</insert>
+</mapper>

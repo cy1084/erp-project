@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.OffUseInfoMapper">
+
+	<select id="getOffUseInfos" resultType="com.erp.chae.vo.OffUseInfoVO">
+		SELECT OUI.*, UI.UI_NAME, UI.UI_ID
+		FROM OFF_USE_INFO OUI
+		INNER JOIN OFF_INFO OI ON OUI.OI_NUM = OI.OI_NUM
+		INNER JOIN USER_INFO UI ON OI.UI_NUM = UI.UI_NUM
+		<where>
+			<if test="uiNum != 0">
+				AND UI.UI_NUM = #{uiNum}
+			</if>
+			<if test="oiNum != 0">
+				AND OI.OI_NUM = #{oiNum}
+			</if>
+			<if test='ouiType != "" and ouiType != null'>
+				AND OUI.OUI_TYPE = #{ouiType}
+			</if>
+			<if test='ouiStatus != "" and ouiStatus != null'>
+				AND OUI.OUI_STATUS = #{ouiStatus}
+			</if>
+		</where>
+	</select>
+
+	<select id="getOffUseInfo" resultType="com.erp.chae.vo.OffUseInfoVO">
+		SELECT * FROM OFF_USE_INFO
+		WHERE OUI_NUM = #{ouiNum}
+	</select>
+
+	<select id="getOffUseInfoByDay" resultType="com.erp.chae.vo.OffUseInfoVO">
+		SELECT * FROM OFF_USE_INFO
+		WHERE
+			(OUI_START BETWEEN #{ouiStart} and #{ouiEnd}
+			OR
+			OUI_END  BETWEEN #{ouiStart} and #{ouiEnd})
+			AND OUI_STATUS=1
+	</select>
+	
+	<insert id="insertOffUseInfo">
+		INSERT INTO OFF_USE_INFO(OI_NUM,OUI_TYPE,OUI_DAY,OUI_START,OUI_END)
+		VALUES(#{oiNum},#{ouiType},DATEDIFF(#{ouiEnd},#{ouiStart})+1,#{ouiStart},#{ouiEnd})
+	</insert>
+
+	<update id="updateOffUseInfo">
+		UPDATE OFF_USE_INFO 
+		SET oui_day=#{ouiDay},
+		oui_type=#{ouiType},
+		oui_start=#{ouiStart},
+		oui_end=#{ouiEnd} 
+		WHERE OUI_NUM=#{ouiNum}
+	</update>
+
+	<update id="updateOffUseInfoStatus">
+		UPDATE OFF_USE_INFO 
+		SET OUI_STATUS = #{ouiStatus}
+		WHERE OUI_NUM=#{ouiNum}
+	</update>
+
+	<delete id="deleteOffUseInfo">
+		DELETE * FROM OFF_USE_INFO
+		WHERE OUI_NUM = #{ouiNum}
+	</delete>
+
+
+</mapper>

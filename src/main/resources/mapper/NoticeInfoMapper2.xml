@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.NoticeInfoMapper2">
+
+	<select id="getNoticeInfos" resultType="com.erp.chae.vo.NoticeInfoVO">
+		SELECT NI.NI_NUM, NI.NI_TITLE, NI.NI_CONTENT, NI.NI_FILE_PATH, NI.NI_CNT, DATE_FORMAT(NI.CREDAT,'%Y-%m-%d') CREDAT, NI.CRETIM, NI.ACTIVE, NI.UI_NUM, UI.UI_NAME
+		FROM NOTICE_INFO NI
+		INNER JOIN USER_INFO UI ON NI.UI_NUM=UI.UI_NUM
+		ORDER BY NI.NI_NUM DESC
+	</select>
+
+	<select id="getNoticeInfo" resultType="com.erp.chae.vo.NoticeInfoVO">
+		SELECT * FROM NOTICE_INFO
+		WHERE NI_NUM = #{niNum}
+	</select> 
+	
+	<insert id="insertNoticeInfo">
+		INSERT INTO NOTICE_INFO(NI_TITLE, NI_CONTENT, UI_NUM, NI_FILE_PATH)
+		VALUES(#{niTitle},#{niContent},#{uiNum}, #{niFilePath})
+	</insert>
+
+	<update id="updateNoticeInfo">
+		UPDATE NOTICE_INFO 
+		SET NI_TITLE=#{niTitle},
+		NI_CONTENT=#{niContent},
+		NI_FILE_PATH=#{niFilePath}
+		WHERE NI_NUM=#{niNum}
+	</update>
+	<update id="updateNoticeInfoCnt">
+		UPDATE NOTICE_INFO 
+		SET NI_CNT = NI_CNT + 1
+		WHERE NI_NUM=#{niNum}
+	</update>
+
+	<delete id="deleteNoticeInfo">
+		UPDATE FROM NOTICE_INFO
+		SET ACTIVE = 0
+		WHERE NI_NUM = #{niNum}
+	</delete>
+
+
+</mapper>

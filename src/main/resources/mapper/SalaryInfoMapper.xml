@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.SalaryInfoMapper">
+
+	<select id="getSalaryInfos" resultType="com.erp.chae.vo.SalaryInfoVO">
+		SELECT SI.*, UI.UI_NAME, UI.UI_ID,
+		YEAR(NOW())- YEAR(CREDAT) - (DATE_FORMAT(NOW(), '%m%d') &lt; DATE_FORMAT(CREDAT, '%m%d')) AS SI_YEAR
+		FROM SALARY_INFO SI
+		INNER JOIN USER_INFO UI ON SI.UI_NUM=UI.UI_NUM
+		<where>
+			<if test='uiId != null and uiId != ""'>
+				AND UI_ID LIKE CONCAT('%',#{uiId},'%')
+			</if>
+			<if test='uiName != null and uiName != ""'>
+				AND UI_NAME LIKE CONCAT('%',#{uiName},'%')
+			</if>
+		</where>
+		ORDER BY UI.UI_NUM DESC
+	</select>
+	
+	<select id="getSalaryInfo" resultType="com.erp.chae.vo.SalaryInfoVO">
+		SELECT SI.*, UI.UI_NAME, UI.UI_ID, 
+		YEAR(NOW())- YEAR(CREDAT) - (DATE_FORMAT(NOW(), '%m%d') &lt; DATE_FORMAT(CREDAT, '%m%d')) AS SI_YEAR
+		FROM SALARY_INFO SI
+		INNER JOIN USER_INFO UI ON SI.UI_NUM=UI.UI_NUM
+		WHERE SI.SI_NUM = #{siNum}
+	</select>
+	
+	<select id="getMySalaryInfo" resultType="com.erp.chae.vo.SalaryInfoVO">
+		SELECT SI.*, UI.UI_NAME, UI.UI_ID, 
+		YEAR(NOW())- YEAR(CREDAT) - (DATE_FORMAT(NOW(), '%m%d') &lt; DATE_FORMAT(CREDAT, '%m%d')) AS SI_YEAR
+		FROM SALARY_INFO SI
+		INNER JOIN USER_INFO UI ON SI.UI_NUM=UI.UI_NUM
+		WHERE SI.UI_NUM = #{uiNum}
+	</select>
+	
+	<insert id="insertSalaryInfo">
+		INSERT INTO SALARY_INFO(UI_NUM, BASE_PAY, EXTENSION_ALLOWANCE, MEAL_ALLOWANCE, OVERTIME_ALLOWANCE, CARMAINTENANCE, EDU_EXPENSE, DUTY_ALLOWANCE, SPECIAL_ALLOWANCE, RETIREMENT_PAY)
+		VALUES(#{uiNum}, #{basePay}, #{extensionAllowance}, #{mealAllowance}, #{overtimeAllowance}, #{carMaintenance}, #{eduExpense}, #{dutyAllowance}, #{specialAllowance}, #{retirementPay})
+	</insert>
+	
+	<update id="updateSalaryInfo">
+		UPDATE SALARY_INFO
+		SET BASE_PAY = #{basePay}, 
+		EXTENSION_ALLOWANCE = #{extensionAllowance},
+		MEAL_ALLOWANCE = #{mealAllowance},
+		OVERTIME_ALLOWANCE = #{overtimeAllowance},
+		CARMAINTENANCE = #{carMaintenance},
+		EDU_EXPENSE = #{eduExpense},
+		DUTY_ALLOWANCE = #{dutyAllowance},
+		SPECIAL_ALLOWANCE = #{specialAllowance},
+		RETIREMENT_PAY = #{retirementPay}		
+		WHERE UI_NUM = #{uiNum}
+	</update>
+	
+	<delete id="deleteSalaryInfo">
+		DELETE FROM SALARY_INFO 
+		WHERE SI_NUM = #{siNum}
+	</delete>
+</mapper>

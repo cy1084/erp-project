@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.UserCertiMapper">
+	<select id="getUserCertis" resultType="com.erp.chae.vo.UserCertiVO">
+		SELECT UC.*, UI.UI_NAME, UI.UI_ID FROM USER_CERTI UC
+		INNER JOIN USER_INFO UI ON UC.UI_NUM = UI.UI_NUM
+		<where>
+			<if test='ucActive != ""  and ucActive != null'>
+				AND UC_ACTIVE = #{ucActive}
+			</if>
+			<if test='ucType != ""  and ucType != null'>
+				AND UC_TYPE = #{ucType}
+			</if>
+			<if test='uiNum != ""  and uiNum !=0'>
+				AND UI.UI_NUM = #{uiNum}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getUserCerti" resultType="com.erp.chae.vo.UserCertiVO">
+		SELECT * FROM USER_CERTI 
+		WHERE UC_NUM=#{ucNum}
+	</select>
+	
+	<insert id="insertUserCerti">
+		INSERT INTO USER_CERTI(UC_TYPE, UI_NUM)
+		VALUES(#{ucType}, #{uiNum})
+	</insert>
+	
+	<update id="updateUserCerti">
+		UPDATE USER_CERTI
+		<set>
+			<if test='ucType != null and ucType != ""'>
+				, UC_TYPE = #{ucType}
+			</if>
+			<if test='ucActive != null and ucActive != ""'>
+				, UC_ACTIVE = #{ucActive}
+			</if>
+			<if test='periodStart != null and periodStart != ""'>
+				, PERIOD_START = #{periodStart}
+			</if>
+			<if test='periodEnd != null and periodEnd != ""'>
+				, PERIOD_END = #{periodEnd}
+			</if>
+		</set>
+		WHERE UC_NUM=#{ucNum}
+	</update>
+	
+	<update id="acceptUserCerti">
+		UPDATE USER_CERTI
+		SET UC_ACTIVE = #{ucActive}
+		, PERIOD_START = DATE_FORMAT(NOW(),'%Y%m%d')
+		, PERIOD_END = DATE_FORMAT(ADDDATE(NOW(),4),'%Y%m%d')
+		WHERE UC_NUM=#{ucNum}
+	</update>
+	
+	<update id="deleteUserCerti">
+		UPDATE USER_CERTI
+		SET UC_ACTIVE=0
+		WHERE UC_NUM=#{ucNum}
+	</update>
+</mapper>

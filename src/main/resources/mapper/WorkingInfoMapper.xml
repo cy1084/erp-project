@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.WorkingInfoMapper">
+
+	<select id="getWorkingInfos" resultType="com.erp.chae.vo.WorkingInfoVO">
+		SELECT 
+		DATE_FORMAT(WI.WI_DATE,'%Y-%m-%d') WI_DATE,
+		DATE_FORMAT(STR_TO_DATE(WI.WI_START,'%H%i%s'),'%T') WI_START,
+		DATE_FORMAT(STR_TO_DATE(WI.WI_END,'%H%i%s'),'%T') WI_END
+		,WI.WI_ETC
+		,UI.UI_NAME
+		,UI.UI_ID
+		,DI.DI_NAME
+		,GI.GI_NAME 
+		FROM WORKING_INFO WI
+		INNER JOIN USER_INFO UI ON UI.UI_NUM = WI.UI_NUM
+		INNER JOIN DEPART_INFO DI ON UI.DI_NUM = DI.DI_NUM
+		INNER JOIN GRADE_INFO GI ON UI.GI_NUM = GI.GI_NUM 	
+		<where>
+			<if test='wiDate != null and wiDate != ""'>
+				AND WI_DATE = #{wiDate}
+			</if>
+			<if test='uiId != null and uiId != ""'>
+				AND UI.UI_ID LIKE CONCAT('%',#{uiId},'%')
+			</if>
+			<if test='uiName != null and uiName != ""'>
+				AND UI.UI_NAME LIKE CONCAT('%',#{uiName},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="getWorkingInfo" resultType="com.erp.chae.vo.WorkingInfoVO">
+		SELECT * FROM WORKING_INFO 
+		<where>
+			<if test='wiNum != null and wiNum != 0'>
+				AND WI_NUM = #{wiNum}
+			</if>
+			<if test='uiNum != null and uiNum != 0'>
+				AND UI_NUM = #{uiNum}
+			</if>
+			<if test='wiDate != null and wiDate != ""'>
+				AND WI_DATE = #{wiDate}
+			</if>
+		</where>
+	</select>
+	
+	<select id="getWorkingInfo2" resultType="com.erp.chae.vo.WorkingInfoVO">
+		SELECT 
+		UI.UI_ID,
+		DATE_FORMAT(WI.WI_DATE,'%Y-%m-%d') WI_DATE,
+		DATE_FORMAT(STR_TO_DATE(WI.WI_START,'%H%i%s'),'%T') WI_START,
+		DATE_FORMAT(STR_TO_DATE(WI.WI_END,'%H%i%s'),'%T') WI_END
+		,WI.WI_ETC
+		FROM WORKING_INFO WI
+		INNER JOIN USER_INFO UI ON UI.UI_NUM = WI.UI_NUM
+		
+		<where>
+			<if test='wiNum != null and wiNum != 0'>
+				AND WI.WI_NUM = #{wiNum}
+			</if>
+			<if test='uiNum != null and uiNum != 0'>
+				AND WI.UI_NUM = #{uiNum}
+			</if>
+			<if test='wiDate != null and wiDate != ""'>
+				AND WI.WI_DATE = #{wiDate}
+			</if>
+		</where>
+		
+	</select>
+	
+	<insert id="insertWorkingInfo">
+		INSERT INTO WORKING_INFO(UI_NUM, WI_ETC)
+		VALUES(#{uiNum}, #{wiEtc})
+	</insert>
+	
+	<update id="updateWorkingInfo">
+		UPDATE WORKING_INFO
+		SET WI_ETC = #{wiEtc}, 
+		WI_DESC = #{wiDesc}, 
+		WI_START = #{wiStart}, 
+		WI_END = #{wiEnd}
+		WHERE WI_NUM = #{wiNum}
+	</update>
+	<update id="endWorkingInfo">
+		UPDATE WORKING_INFO
+		SET WI_ETC = TIMEDIFF(DATE_FORMAT(NOW(),'%H%i%s'),WI_START)
+		,WI_END = DATE_FORMAT(NOW(),'%H%i%s')
+		WHERE WI_NUM = #{wiNum}
+	</update>
+	
+	<delete id="deleteWorkingInfo">
+		DELETE FROM WORKING_INFO 
+		WHERE WI_NUM = #{wiNum}
+	</delete>
+</mapper>
