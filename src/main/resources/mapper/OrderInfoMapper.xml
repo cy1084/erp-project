@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="com.example.demo.mapper.OrderInfoMapper">
-	<select id="getOrderInfos" resultType="com.example.demo.vo.OrderInfoVO">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.OrderInfoMapper">
+	<select id="getOrderInfos" resultType="com.erp.chae.vo.OrderInfoVO">
 		SELECT OI.*
 		,CI.CI_ID
 		,PI.PI_NUM 
@@ -9,7 +10,7 @@
 		INNER JOIN PRODUCT_INFO PI ON OI.PI_NUM=PI.PI_NUM
 	</select>
 	
-	<select id="getOrderInfo" resultType="com.example.demo.vo.OrderInfoVO">
+	<select id="getOrderInfo" resultType="com.erp.chae.vo.OrderInfoVO">
 		SELECT OI.*
 		,CI.CI_ID
 		,PI.PI_NUM  
