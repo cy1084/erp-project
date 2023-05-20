@@ -28,17 +28,13 @@ public class CustomerInfoService {
 			return customerInfoMapper.insertCustomerInfo(customerInfoVO) == 1;
 		}
 		
-		public boolean updateCustomerInfo(CustomerInfoVO customerInfoVO){
-			if(customerInfoMapper.getCustomerInfo(customerInfoVO)!=null) { 
-				return false; 
-			}
+		public boolean updateCustomerInfo(CustomerInfoVO customerInfoVO){			
 			return customerInfoMapper.updateCustomerInfo(customerInfoVO) == 1;
 		}
 		
 		public boolean deleteCustomerInfo(CustomerInfoVO customerInfoVO){
 			return customerInfoMapper.deleteCustomerInfo(customerInfoVO) == 1;
 		}
-
 	}
 
 
