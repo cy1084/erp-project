@@ -92,6 +92,37 @@
 														</c:forEach>
 													</select>
 												</div>
+												<div class="mb-3">
+													<label class="form-label">기본급</label> <input
+														class="form-control form-control-lg" type="text"
+														name="uiBasepay" placeholder="기본급을 입력해주세요." />
+												</div>
+												<div class="mb-3">
+													<label class="form-label">교육지원비</label> <input
+														class="form-control form-control-lg" type="text"
+														name="uiEdu" placeholder="교육지원비를 입력해주세요." />
+												</div>
+												<div class="mb-3">
+													<label class="form-label">차량유지비</label> <input
+														class="form-control form-control-lg" type="text"
+														name="uiCarmaintenance" placeholder="차량유지비를 입력해주세요." />
+												</div>
+												<div class="mb-3">
+													<label class="form-label">식대</label> <input
+														class="form-control form-control-lg" type="text"
+														name="uiMeal" placeholder="식대를 입력해주세요." />
+												</div>
+												<div class="mb-3">
+													<label class="form-label">연장수당</label> <input
+														class="form-control form-control-lg" type="text"
+														name="uiExtension" placeholder="연장수당을 입력해주세요." />
+												</div>
+												<div class="mb-3">
+													<label class="form-label">특별수당</label> <input
+														class="form-control form-control-lg" type="text"
+														name="uiSpecial" placeholder="특별수당을 입력해주세요." />
+												</div>
+												
 												<div class="text-center mt-3">
 													<button type="submit" class="btn btn-lg btn-primary">사원 등록</button>
 												</div>

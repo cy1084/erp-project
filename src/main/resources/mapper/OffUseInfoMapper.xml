@@ -4,10 +4,12 @@
 <mapper namespace="com.erp.chae.mapper.OffUseInfoMapper">
 
 	<select id="getOffUseInfos" resultType="com.erp.chae.vo.OffUseInfoVO">
-		SELECT OUI.*, UI.UI_NAME, UI.UI_ID
+		SELECT OUI.*, UI.UI_NAME, UI.UI_ID, DI.DI_NAME ,GI.GI_NAME 
 		FROM OFF_USE_INFO OUI
 		INNER JOIN OFF_INFO OI ON OUI.OI_NUM = OI.OI_NUM
 		INNER JOIN USER_INFO UI ON OI.UI_NUM = UI.UI_NUM
+		INNER JOIN DEPART_INFO DI ON UI.DI_NUM = DI.DI_NUM
+		INNER JOIN GRADE_INFO GI ON UI.GI_NUM = GI.GI_NUM 
 		<where>
 			<if test="uiNum != 0">
 				AND UI.UI_NUM = #{uiNum}
