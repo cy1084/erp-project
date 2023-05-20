@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 		@Autowired
 		private ProductInfoService productInfoService;
 		
-		@GetMapping("/Products")
+		@GetMapping("/products")
 		public String productInfos(Model model, @ModelAttribute ProductInfoVO productInfoVO) {
 			List<ProductInfoVO> productList = productInfoService.getProductInfos(productInfoVO);
 			model.addAttribute("productList",productList);

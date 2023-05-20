@@ -32,7 +32,7 @@
 									</thead>
 									<tbody>
 									<c:forEach items="${customerList}" var="customer">
-										<tr onclick="goPage('/grade/view?ciId=${customer.ciId}')" style="cursor:pointer">
+										<tr onclick="goPage('/customer/view?ciId=${customer.ciId}')" style="cursor:pointer">
 											<td >${customer.ciId}</td>
 											<td >${customer.ciName}</td>
 											<td >${customer.ciAge}</td>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="com.example.demo.mapper.ProductInfoMapper">
-	<select id="getProductInfos" resultType="com.example.demo.vo.ProductInfoVO">
-		SELECT * FROM RPODUCT_INFO 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erp.chae.mapper.ProductInfoMapper">
+	<select id="getProductInfos" resultType="com.erp.chae.vo.ProductInfoVO">
+		SELECT * FROM PRODUCT_INFO 
 	</select>
 	
-	<select id="getProductInfo" resultType="com.example.demo.vo.ProductInfoVO">
-		SELECT * FROM RPODUCT_INFO 
+	<select id="getProductInfo" resultType="com.erp.chae.vo.ProductInfoVO">
+		SELECT * FROM PRODUCT_INFO 
 		<where>
 			<if test='piNum != null and piNum != 0'>
 				AND PI_NUM = #{piNum}
@@ -14,12 +15,12 @@
 	</select>
 	
 	<insert id="insertProductInfo">
-		INSERT INTO RPODUCT_INFO(PI_NAME, PI_STOCK, PI_PRICE, PI_MANUFACTURE)
+		INSERT INTO PRODUCT_INFO(PI_NAME, PI_STOCK, PI_PRICE, PI_MANUFACTURE)
 		VALUES(#{piName}, #{piStock}, #{piPrice}, #{piManufacture})
 	</insert>
 	
 	<update id="updateProductInfo">
-		UPDATE RPODUCT_INFO
+		UPDATE PRODUCT_INFO
 		SET PI_NAME = #{piName}, 
 		PI_STOCK = #{piStock},
 		PI_PRICE = #{piPrice},
@@ -28,7 +29,7 @@
 	</update>
 	
 	<delete id="deleteProductInfo">
-		DELETE FROM RPODUCT_INFO 
+		DELETE FROM PRODUCT_INFO 
 		WHERE PI_NUM = #{piNum}
 	</delete>
 </mapper>
