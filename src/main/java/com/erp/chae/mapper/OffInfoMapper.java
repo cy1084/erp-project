@@ -14,8 +14,9 @@ public interface OffInfoMapper {
 	
 	int updateOffInfo(OffInfoVO offInfoVO);
 	
-	int deleteOffInfo(OffInfoVO offInfoVO);
-
+	int deleteOffInfo(int oiNum);
+	
+	int deleteOffInfoByUiNum(int uiNum);
 }
 
 

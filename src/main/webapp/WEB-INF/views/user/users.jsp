@@ -38,6 +38,7 @@
 											<th>부서</th>
 											<th>입사일</th>
 											<th>재직여부</th>
+											<th>출력</th>
 									
 										</tr>
 									</thead>
@@ -48,8 +49,7 @@
 											</tr>
 										</c:if>
 										<c:forEach items="${page.list}" var="user">
-											<tr onclick="goPage('/user/view?uiNum=${user.uiNum}&page=${page.pageNum}')"
-												style="cursor: pointer">
+											<tr>
 												<td>${user.uiNum}</td>
 												<td>${user.uiId}</td>
 												<td>${user.uiName}</td>
@@ -69,6 +69,9 @@
 													<c:if test="${user.active==2 }">
 														입사예정
 													</c:if>
+												</td>
+												<td>
+													<button onclick="goPage('/user/view?uiNum=${user.uiNum}&page=${page.pageNum}&print=true')">출력</button>
 												</td>
 											</tr>
 										</c:forEach>

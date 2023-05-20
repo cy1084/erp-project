@@ -13,4 +13,9 @@
 		INSERT INTO UI_NI_MAP(UI_NUM, NI_NUM)
 		VALUES(#{uiNum}, #{niNum})
 	</insert>
+	
+	<delete id="deleteUiNiMap">
+		DELETE FROM UI_NI_MAP
+		WHERE UI_NUM = #{uiNum}
+	</delete>
 </mapper>

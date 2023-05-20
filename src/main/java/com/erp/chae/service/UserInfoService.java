@@ -5,11 +5,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.erp.chae.mapper.OffInfoMapper;
 import com.erp.chae.mapper.OffUseInfoMapper;
 import com.erp.chae.mapper.UiNiMapper;
 import com.erp.chae.mapper.UserCertiMapper;
 import com.erp.chae.mapper.UserInfoMapper;
+import com.erp.chae.mapper.WorkingInfoMapper;
 import com.erp.chae.util.UploadFileUtil;
+import com.erp.chae.vo.OffInfoVO;
 import com.erp.chae.vo.OffUseInfoVO;
 import com.erp.chae.vo.UserCertiVO;
 import com.erp.chae.vo.UserInfoVO;
@@ -22,11 +25,17 @@ public class UserInfoService {
 	@Autowired
 	private UserInfoMapper userInfoMapper;
 	@Autowired
-	private UiNiMapper umMapper;
+	private UiNiMapper unMapper;
 	@Autowired
 	private UserCertiMapper ucMapper;
 	@Autowired
 	private OffUseInfoMapper ouiMapper;
+	@Autowired
+	private OffInfoMapper oiMapper;
+	@Autowired
+	private UserCertiMapper uciMapper;
+	@Autowired
+	private WorkingInfoMapper wiMapper;
 	@Autowired
 	private UploadFileUtil fileUtil;
 	
@@ -57,7 +66,7 @@ public class UserInfoService {
 		UserInfoVO userVO = (UserInfoVO) session.getAttribute("user");
 		userVO = userInfoMapper.getUserInfoByNum(userVO);
 		if("2".equals(userVO.getUiLvl())) {//사원
-			userVO.setNotis(umMapper.selectNotis(userVO.getUiNum()));
+			userVO.setNotis(unMapper.selectNotis(userVO.getUiNum()));
 		}else {//관리자
 			UserCertiVO ucVO = new UserCertiVO();
 			ucVO.setUcActive("2"); //재직증명서 신청 상태
@@ -116,6 +125,16 @@ public class UserInfoService {
 	
 	public boolean pwdInitRequest(UserInfoVO userInfoVO) {
 		return userInfoMapper.pwdInitRequest(userInfoVO) == 1;
+	}
+	
+	public boolean deleteUserInfo(UserInfoVO userInfoVO) {
+		int uiNum = userInfoVO.getUiNum();
+		ouiMapper.deleteOffUseInfoByUiNum(uiNum);
+		oiMapper.deleteOffInfoByUiNum(uiNum);
+		unMapper.deleteUiNiMap(uiNum);
+		ucMapper.deleteUserCertiByUiNum(uiNum);
+		wiMapper.deleteWorkingInfoByUiNum(uiNum);
+		return userInfoMapper.deleteUserInfo(userInfoVO) == 1;
 	}
 	
 	public boolean pwdInit(UserInfoVO userInfoVO) {

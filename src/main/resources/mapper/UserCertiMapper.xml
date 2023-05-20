@@ -59,4 +59,9 @@
 		SET UC_ACTIVE=0
 		WHERE UC_NUM=#{ucNum}
 	</update>
+	
+	<delete id="deleteUserCertiByUiNum"> <!-- 퇴사한 사람 -->
+		DELETE FROM USER_CERTI
+		WHERE UI_NUM=#{uiNum}
+	</delete>
 </mapper>

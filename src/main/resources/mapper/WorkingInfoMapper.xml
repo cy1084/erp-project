@@ -93,4 +93,9 @@
 		DELETE FROM WORKING_INFO 
 		WHERE WI_NUM = #{wiNum}
 	</delete>
+	
+	<delete id="deleteWorkingInfoByUiNum">
+		DELETE FROM WORKING_INFO 
+		WHERE UI_NUM = #{uiNum}
+	</delete>
 </mapper>

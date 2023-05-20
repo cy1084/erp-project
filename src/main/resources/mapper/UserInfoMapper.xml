@@ -156,4 +156,9 @@
 		</if>
 		WHERE UI_NUM = #{uiNum}
 	</update>
+	
+	<delete id="deleteUserInfo">
+		DELETE FROM USER_INFO
+		WHERE UI_NUM = #{uiNum}
+	</delete>
 </mapper>

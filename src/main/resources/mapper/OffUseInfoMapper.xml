@@ -65,8 +65,17 @@
 	</update>
 
 	<delete id="deleteOffUseInfo">
-		DELETE * FROM OFF_USE_INFO
+		DELETE FROM OFF_USE_INFO
 		WHERE OUI_NUM = #{ouiNum}
+	</delete>
+
+	<delete id="deleteOffUseInfoByUiNum">
+		DELETE  FROM OFF_USE_INFO 
+		WHERE oi_num IN (
+		SELECT oi_num FROM    OFF_INFO OI 
+		INNER JOIN USER_INFO UI ON UI.UI_NUM = OI.UI_NUM   
+		WHERE UI.UI_NUM = #{uiNum}
+		)
 	</delete>
 
 
