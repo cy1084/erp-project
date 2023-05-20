@@ -175,5 +175,13 @@ th, td {
 		</form>
 		</div>
 	</div>
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+	const isPrint = '${param.print}';
+	if(isPrint){
+		window.print();
+	}
+});
+</script>
 </body>
 </html>

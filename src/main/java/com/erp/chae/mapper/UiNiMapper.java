@@ -8,4 +8,5 @@ public interface UiNiMapper {
 
 	List<NoticeInfoVO> selectNotis(int uiNum);
 	int insertUiNiMap(NoticeInfoVO niVO);
+	int deleteUiNiMap(int uiNum);
 }

@@ -39,6 +39,9 @@
 											<th>입사일</th>
 											<th>퇴사일</th>
 											<th>재직여부</th>
+											<th>출력</th>
+											<th>퇴직</th>
+											<th>삭제</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -48,8 +51,7 @@
 											</tr>
 										</c:if>
 										<c:forEach items="${page.list}" var="user">
-											<tr onclick="goPage('/user/view?uiNum=${user.uiNum}&page=${page.pageNum}')"
-												style="cursor: pointer">
+											<tr>
 												<td>${user.uiNum}</td>
 												<td>${user.uiId}</td>
 												<td>${user.uiName}</td>
@@ -68,6 +70,22 @@
 														입사예정
 													</c:if>
 												</td>
+												<td>
+													<button onclick="goPage('/user/view?uiNum=${user.uiNum}&page=${page.pageNum}&print=true')">출력</button>
+												</td>
+												<td>
+													<button type="button" onclick="userOut('${user.uiNum}','${user.active}')">
+													<c:if test="${user.active!=0}">
+														퇴직
+													</c:if>
+													<c:if test="${user.active==0}">
+														퇴직취소
+													</c:if>
+													</button>
+												</td>
+												<td>
+													<button type="button" onclick="userOut('${user.uiNum}','3')">삭제</button>
+												</td>
 											</tr>
 										</c:forEach>
 										
@@ -81,6 +99,19 @@
 			<c:import url="/WEB-INF/views/common/footer.jsp" />
 		</div>
 	</div>
-<body>
+	<form action="/users/out" method="POST" id="userOut">
+		<input type="hidden" id="uiNum" name="uiNum">
+	</form>
+<script>
+function userOut(uiNum,active){
+	document.querySelector('#uiNum').value = uiNum;
+	if(active==0){
+		document.querySelector('#userOut').action='/users/out/cancel';
+	}else if(active==3){
+		document.querySelector('#userOut').action='/users/delete';
+	}
+	document.querySelector('#userOut').submit();
+}
+</script>
 </body>
 </html>

@@ -41,8 +41,13 @@
 	</update>
 
 	<delete id="deleteOffInfo">
-		DELETE * FROM OFF_INFO
+		DELETE FROM OFF_INFO
 		WHERE OI_NUM = #{oiNum}
+	</delete>
+
+	<delete id="deleteOffInfoByUiNum">
+		DELETE FROM OFF_INFO
+		WHERE UI_NUM = #{uiNum}
 	</delete>
 
 

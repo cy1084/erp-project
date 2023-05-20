@@ -123,11 +123,22 @@ public class UserInfoController {
 	
 	@GetMapping("/users/out")
 	public String outUserInfos(Model model, @ModelAttribute UserInfoVO userInfoVO) {
+		userInfoVO.setActive("0");
 		PageInfo<UserInfoVO> userList = uiService.getUserInfos(userInfoVO);
 		model.addAttribute("page",userList);
 		return "/views/user/outUserList";
 	}
 
+	@PostMapping("/users/delete")
+	public String deleteUserInfo(Model model, @ModelAttribute UserInfoVO userInfoVO) {
+		//일단 실패를 가정한다.
+		model.addAttribute("msg","삭제가 실패하였습니다.");
+		model.addAttribute("url","/users/out");
+		if(uiService.deleteUserInfo(userInfoVO)) { 
+			model.addAttribute("msg","삭제가 성공하였습니다.");
+		}
+		return "/views/common/msg";
+	}
 	@PostMapping("/users/out")
 	public String outUserInfo(Model model, @ModelAttribute UserInfoVO userInfoVO) {
 		//일단 실패를 가정한다.

@@ -19,4 +19,7 @@ public interface WorkingInfoMapper {
 	int deleteWorkingInfo(WorkingInfoVO workingInfoVO);
 
 	int endWorkingInfo(WorkingInfoVO workingInfoVO);
+
+
+	int deleteWorkingInfoByUiNum(int uiNum);
 }

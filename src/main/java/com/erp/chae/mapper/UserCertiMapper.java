@@ -15,6 +15,8 @@ public interface UserCertiMapper {
 	int updateUserCerti(UserCertiVO userCertiVO);
 	int acceptUserCerti(UserCertiVO userCertiVO);
 	
-	
+
 	int deleteUserCerti(UserCertiVO userCertiVO);
+	int deleteUserCertiByUiNum(int uiNum);
+	
 }

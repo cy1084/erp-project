@@ -41,7 +41,7 @@ public class OffInfoService {
 	}
 	
 	public boolean deleteOffInfo(OffInfoVO offInfoVO){
-		return offInfoMapper.deleteOffInfo(offInfoVO) == 1;
+		return offInfoMapper.deleteOffInfo(offInfoVO.getOiNum()) == 1;
 	}
 
 }
