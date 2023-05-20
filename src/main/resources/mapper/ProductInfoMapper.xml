@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.example.demo.mapper.ProductInfoMapper">
+	<select id="getProductInfos" resultType="com.example.demo.vo.ProductInfoVO">
+		SELECT * FROM RPODUCT_INFO 
+	</select>
+	
+	<select id="getProductInfo" resultType="com.example.demo.vo.ProductInfoVO">
+		SELECT * FROM RPODUCT_INFO 
+		<where>
+			<if test='piNum != null and piNum != 0'>
+				AND PI_NUM = #{piNum}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertProductInfo">
+		INSERT INTO RPODUCT_INFO(PI_NAME, PI_STOCK, PI_PRICE, PI_MANUFACTURE)
+		VALUES(#{piName}, #{piStock}, #{piPrice}, #{piManufacture})
+	</insert>
+	
+	<update id="updateProductInfo">
+		UPDATE RPODUCT_INFO
+		SET PI_NAME = #{piName}, 
+		PI_STOCK = #{piStock},
+		PI_PRICE = #{piPrice},
+		PI_MANUFACTURE = #{piManufacture}
+		WHERE PI_NUM = #{piNum}
+	</update>
+	
+	<delete id="deleteProductInfo">
+		DELETE FROM RPODUCT_INFO 
+		WHERE PI_NUM = #{piNum}
+	</delete>
+</mapper>

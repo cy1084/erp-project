@@ -32,7 +32,7 @@ public class DepartmentInfoController {
 	@GetMapping("/department/view")
 	public String departmentInfo(Model model,@ModelAttribute DepartmentInfoVO departmentInfoVO) {
 		DepartmentInfoVO department = departmentInfoService.getDepartmentInfo(departmentInfoVO);
-		model.addAttribute("department",department);
+		model.addAttribute("department",department); //department는 키값
 		return "/views/department/departmentView";		
 	} 
 	

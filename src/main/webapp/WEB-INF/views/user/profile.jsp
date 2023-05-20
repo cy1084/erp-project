@@ -71,7 +71,8 @@
 								</div>
 								</div>
 								<div class="circular--parent">
-								<form action="/user/update" method="POST" enctype="multipart/form-data">
+								<form action="/user/update" method="POST" enctype="multipart/form-data"> 
+								<!-- enctype : 모든 문자를 인코딩하지 않음을 명시함. <form> 요소가 파일이나 이미지를 서버로 전송할 때 주로 사용함. -->
 								<input type="file" name="uiFile" accept="image/*" onchange="loadFile(event)">
 								</div>
 								<div class="card">

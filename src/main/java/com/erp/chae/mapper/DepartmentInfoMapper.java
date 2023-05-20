@@ -11,6 +11,9 @@ public interface DepartmentInfoMapper {
 	
 	DepartmentInfoVO getDepartmentInfo(DepartmentInfoVO departmentInfoVO);
 	
+	DepartmentInfoVO validationDepartmentInfo(DepartmentInfoVO departmentInfoVO);
+	
+	
 	int insertDepartmentInfo(DepartmentInfoVO departmentInfoVO);
 	
 	int updateDepartmentInfo(DepartmentInfoVO departmentInfoVO);

@@ -12,6 +12,7 @@ import com.erp.chae.vo.UserInfoVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+// 첫 화면 
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override

@@ -39,8 +39,11 @@
 												</div>
 												</c:if>
 												<div class="text-center mt-3">
+												
+													<c:if test="${user.uiLvl==1}">
 													<button type="button" onclick="goPage('/notice/upload?niNum=${notice.niNum}')" class="btn btn-lg btn-primary">공지사항 수정</button>
 													<button type="submit" class="btn btn-lg btn-primary">공지사항 삭제</button>
+													</c:if>
 													<button type="button" onclick="goPage('/notices?page=${param.page!=null?param.page:1}')" class="btn btn-lg">리스트</button>
 												</div>
 											</form>

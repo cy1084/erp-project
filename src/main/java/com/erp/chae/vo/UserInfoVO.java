@@ -23,14 +23,14 @@ public class UserInfoVO extends PageVO{
 	private String uiLvl;
 	private String giName;
 	private String diName;
-	private String uiDuties;
+	private String uiDuties; //담당업무
 	private int notiCnt;
 	private int diNum;
 	private int giNum;	
 	private String wiStart;
 	private String wiEnd;
 	private int wiNum;
-	private String wiEtc;
+	private String wiEtc; //근무시간
 	private String wiDate;
 	private List<NoticeInfoVO> notis;
 	private List<UserCertiVO> certies;

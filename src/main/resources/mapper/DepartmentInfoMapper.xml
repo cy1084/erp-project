@@ -11,16 +11,22 @@
 		</where>
 	</select>
 	
-	<select id="getDepartmentInfo" resultType="com.erp.chae.vo.DepartmentInfoVO">
+	<select id="getDepartmentInfo" resultType="com.erp.chae.vo.DepartmentInfoVO"> 
 		SELECT * FROM DEPART_INFO 
 		<where>
-			<if test='diNum != null and diNum != 0'>
+			<if test='diNum != null and diNum != 0'> 
 				AND DI_NUM = #{diNum}
 			</if>
 			<if test='diName != null and diName != ""'>
 				AND DI_NAME = #{diName}
 			</if>
 		</where>
+	</select>
+	
+	<select id="validationDepartmentInfo" resultType="com.erp.chae.vo.DepartmentInfoVO"> 
+		SELECT * FROM DEPART_INFO 
+		WHERE DI_NUM != #{diNum}
+		AND DI_NAME = #{diName}
 	</select>
 	
 	<insert id="insertDepartmentInfo">

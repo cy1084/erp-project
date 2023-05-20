@@ -28,7 +28,7 @@
 										<div class="m-sm-4">
 											<form action="/department/insert" method="POST" onsubmit="return validation()">
 												<div class="mb-3">
-													<label class="form-label" for="diName">부서명</label> 
+													<label class="form-label" for="diName">부서명</label>
 													<input class="form-control form-control-lg" id="diName" type="text" name="diName" placeholder="부서명을 입력해주세요." />
 												</div>
 												<div class="mb-3">
@@ -52,7 +52,7 @@
 	</div>
 	<script>
 function validation(){
-	const diName = document.querySelector('#diName'); 
+	const diName = document.querySelector('#diName');  //id값
 	const diDesc = document.querySelector('#diDesc');
 	if(diName.value.trim().length<3){
 		alert('부서명은 3글자 이상입니다.');

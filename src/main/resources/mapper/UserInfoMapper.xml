@@ -83,12 +83,14 @@
 	</update>
 	<update id="changePwd">
 		UPDATE USER_INFO
-		SET ACTIVE='1',
+		SET ACTIVE='1', <!-- 비밀번호 바꾸면 1로 세팅 -->
 		UI_PWD = #{uiPwd}
 		WHERE UI_NUM = #{uiNum}
 	</update>
 	
 	<insert id="signUp" useGeneratedKeys="true" keyColumn="UI_NUM" keyProperty="uiNum">
+	<!--  useGeneratedKeys : insert나 update됨이 동시에 자동생성된 키를 가져올 수 있는 속성 -->
+	<!--  리턴 될 key property 설정. 즉 values나 set 다음에 오는 컬럼명과 동일하게 설정하면 됨 -->
 		INSERT INTO USER_INFO(UI_NAME, UI_TRANS, UI_BIRTH, UI_EMAIL, UI_ADDRESS, DI_NUM, GI_NUM, UI_LVL, UI_DUTIES, ACTIVE, UI_FILE_PATH
 		, CREDAT, CRETIM)
 		VALUES( #{uiName},#{uiTrans},#{uiBirth},#{uiEmail},#{uiAddress},#{diNum}, #{giNum}, #{uiLvl}, #{uiDuties}, 2, #{uiFilePath}
@@ -136,7 +138,7 @@
 	<update id="updateUserInfoActive">
 		UPDATE USER_INFO
 		SET ACTIVE=#{active},
-		OUTDAT = #{outdat}
+		OUTDAT = #{outdat} 
 		WHERE UI_NUM = #{uiNum}
 	</update>
 	
@@ -146,10 +148,10 @@
 		WHERE UI_ID = #{uiId}
 	</update>
 	
-	<update id="pwdInit">
+	<update id="pwdInit"> <!-- 입사예정자면 아이디와 비밀번호를 같게 -->
 		UPDATE USER_INFO
 		SET ACTIVE=#{active}
-		<if test='active == 2'>
+		<if test='active == 2'> 
 			,UI_PWD = UI_ID
 		</if>
 		WHERE UI_NUM = #{uiNum}

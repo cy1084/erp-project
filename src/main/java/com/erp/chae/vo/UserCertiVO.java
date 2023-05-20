@@ -15,4 +15,5 @@ public class UserCertiVO extends PageVO{
 	private String url;
 	private String uiId;
 	private String uiName;
+	private int uiLvl;
 }

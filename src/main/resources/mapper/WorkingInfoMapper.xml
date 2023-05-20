@@ -81,7 +81,8 @@
 		WI_END = #{wiEnd}
 		WHERE WI_NUM = #{wiNum}
 	</update>
-	<update id="endWorkingInfo">
+	
+	<update id="endWorkingInfo"> <!-- 근무시간 -->
 		UPDATE WORKING_INFO
 		SET WI_ETC = TIMEDIFF(DATE_FORMAT(NOW(),'%H%i%s'),WI_START)
 		,WI_END = DATE_FORMAT(NOW(),'%H%i%s')

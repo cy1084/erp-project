@@ -134,6 +134,7 @@ div.picture1 {
 			<div class="bottom d-flex flex-column">
 				<p class="center">상기 사항은 사실과 틀림없음을 증명함</p>
 				<span class="d-block center">${date}</span>
+				<!-- 완료 표시가 되면 도장이 찍힘 -->
 				<c:if test="${certi.ucActive==1 }">
 				<div class="d-flex flex-column right picture1">
 					<span></span>

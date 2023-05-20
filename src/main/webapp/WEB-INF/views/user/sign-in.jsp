@@ -50,14 +50,7 @@
 													data-body="초기화 신청을 하시겠습니까?<br><input type='text' id='id' placeholder='초기화할 아이디를 입력해주세요' class='form-control form-control-lg' >">비밀번호를 잊으셨나요?</a>
 												</small>
 											</div>
-											<!--  <div>
-												<label class="form-check"> <input
-													class="form-check-input" type="checkbox"
-													value="remember-me" name="remember-me" checked> <span
-													class="form-check-label"> Remember me next time </span>
-												</label>
-											</div>
-											-->
+											
 											<div class="text-center mt-3">
 
 												<button type="submit" class="btn btn-lg btn-primary" style="font-size:15px">로그인</button>
@@ -89,7 +82,7 @@ function validation(){
 		uiId.focus();
 		return false;
 	}
-	if(uiPwd.value.trim().length<1){ //이후 전시회 할때는 4자로 바꿀 예정
+	if(uiPwd.value.trim().length<1){ 
 		alert('비밀번호는 1글자 이상입니다.');
 		uiPwd.value = '';
 		uiPwd.focus();

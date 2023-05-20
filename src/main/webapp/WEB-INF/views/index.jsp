@@ -45,11 +45,13 @@
 												<td>${notice.niCnt}</td>
 											</tr>
 										</c:forEach>
+										<c:if test="${user.uiLvl==1}">
 										<tr>
 											<td colspan="5" style="text-align: right">
 												<button onclick="goPage('/views/notice/noticeInsert')">등록</button>
 											</td>
 										</tr>
+										</c:if>
 									</tbody>
 								</table>
 							</div>

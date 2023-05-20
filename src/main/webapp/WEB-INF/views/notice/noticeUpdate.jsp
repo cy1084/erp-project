@@ -19,14 +19,15 @@
 							<div class="d-table-cell align-middle">
 
 								<div class="text-center mt-4">
-									<h1 class="h3">공지 등록</h1>
+									<h1 class="h3">공지 수정</h1>
 								</div>
 
 								<div class="card">
 									<div class="card-body">
 										<div class="m-sm-4">
-											<form action="/notice/insert" method="POST" enctype="multipart/form-data">
-												<input type="hidden" name="uiNum" value="1">
+											<form action="/notice/update" method="POST" enctype="multipart/form-data">
+												<input type="hidden" name="uiNum" value="${user.uiNum}">
+												<input type="hidden" name="niNum" value="${notice.niNum}">
 												<div class="mb-3">
 													<label class="form-label" for="niTitle">제목</label> 
 													<input class="form-control form-control-lg" type="text" name="niTitle" placeholder="제목을 입력해주세요." value="${notice.niTitle }"/>
@@ -46,7 +47,7 @@
 													<input class="form-control form-control-lg" type="file" name="niFile"  />
 												</div>
 												<div class="text-center mt-3">
-													<button type="submit" class="btn btn-lg btn-primary">공지 등록</button>
+													<button type="submit" class="btn btn-lg btn-primary">공지 수정</button>
 												</div>
 											</form>
 										</div>

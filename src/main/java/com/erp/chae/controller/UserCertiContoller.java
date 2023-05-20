@@ -28,15 +28,16 @@ public class UserCertiContoller {
 	
 
 	@GetMapping("/certies")
-	public String userCertis(Model model, @ModelAttribute UserCertiVO userCertiVO) {
+	public String userCertis(Model model, @ModelAttribute UserCertiVO userCertiVO, HttpSession session) {
+
+		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
+		userCertiVO.setUiNum(user.getUiNum());
 		PageInfo<UserCertiVO> page = userCertiService.getUserCertis(userCertiVO);
 		model.addAttribute("page",page);
 		return "/views/certi/certiList";
 	}
 	@GetMapping("/certiManage")
-	public String userCertiManage(Model model, @ModelAttribute UserCertiVO userCertiVO, HttpSession session) {
-		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
-		userCertiVO.setUiNum(user.getUiNum());
+	public String userCertiManage(Model model, @ModelAttribute UserCertiVO userCertiVO) {
 		PageInfo<UserCertiVO> page = userCertiService.getUserCertis(userCertiVO);
 		model.addAttribute("page",page);
 		return "/views/certi/certiManageList";
@@ -51,29 +52,29 @@ public class UserCertiContoller {
 
 	@PostMapping("/certi/insert")
 	public String addUserCerti(Model model, @ModelAttribute UserCertiVO userCertiVO) {
-		//일단 실패를 가정한다.
+		
 		
 		model.addAttribute("msg","재직증명서 등록이 실패하였습니다.");
 		model.addAttribute("url","/certi/view");
 		
-		if(userCertiService.insertUserCerti(userCertiVO)) {//true가 나왔다면 재직증명서 등록이 성공
+		if(userCertiService.insertUserCerti(userCertiVO)) {
 			model.addAttribute("msg","재직증명서 등록이 성공하였습니다.");
 			model.addAttribute("url","/certies");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/certi/update")
 	public String updateUserCerti(Model model, @ModelAttribute UserCertiVO userCertiVO) {
-		//일단 실패를 가정한다.
+		
 		
 		model.addAttribute("msg","재직증명서 수정이 실패하였습니다.");
 		model.addAttribute("url",userCertiVO.getUrl());
-		if(userCertiService.updateUserCerti(userCertiVO)) {//true가 나왔다면 재직증명서 수정이 성공
+		if(userCertiService.updateUserCerti(userCertiVO)) {
 			model.addAttribute("msg","재직증명서 수정이 성공하였습니다.");
 			model.addAttribute("url",userCertiVO.getUrl());
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/certi/accept")
@@ -84,19 +85,19 @@ public class UserCertiContoller {
 			model.addAttribute("msg","재직증명서 수정이 성공하였습니다.");
 			uiService.reloadSession(session);
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/certi/delete")
 	public String deleteUserCerti(Model model, @ModelAttribute UserCertiVO userCertiVO) {
-		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","재직증명서 삭제가 실패하였습니다.");
 		model.addAttribute("url","/certi/view?giNum=" + userCertiVO.getUcNum());
-		if(userCertiService.deleteUserCerti(userCertiVO)) {//true가 나왔다면 재직증명서 삭제가 성공
+		if(userCertiService.deleteUserCerti(userCertiVO)) {
 			model.addAttribute("msg","재직증명서 삭제가 성공하였습니다.");
 			model.addAttribute("url","/certies");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 }

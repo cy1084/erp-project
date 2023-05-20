@@ -44,7 +44,7 @@
 												<td>${user.uiId}</td>
 												<td>
 													<button type="button" onclick="pwdInit('${user.uiNum}','2')">승인</button>
-													<button type="button" onclick="pwdInit('${user.uiNum}','1')">신청취소</button>
+													<button type="button" onclick="pwdInit('${user.uiNum}','1')">신청 취소</button>
 												</td>
 											</tr>
 										</c:forEach>

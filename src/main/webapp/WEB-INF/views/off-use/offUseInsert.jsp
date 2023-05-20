@@ -67,7 +67,6 @@ function changeDate(){
 }
 $(function() {
 	let date = new Date();
-	alert(date);
 	document.querySelector('#ouiStart').value = date.yyyymmdd();
 	document.querySelector('#ouiEnd').value = date.yyyymmdd();
   $('input[name="ouiDay"]').daterangepicker({

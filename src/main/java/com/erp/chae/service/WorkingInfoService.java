@@ -31,8 +31,8 @@ public class WorkingInfoService {
 	}
 	
 	public boolean insertWorkingInfo(WorkingInfoVO workingInfoVO){
-		if(workingInfoMapper.getWorkingInfo(workingInfoVO)!=null) { //직급 명은 유니크이기 떄문에 조회 결과 null이 아닐 경우는 중복
-			return false; // 중복일 경우 실패로 처리 한다.
+		if(workingInfoMapper.getWorkingInfo(workingInfoVO)!=null) { 
+			return false; 
 		}
 		return workingInfoMapper.insertWorkingInfo(workingInfoVO) == 1 ? true : false;
 	}
@@ -40,8 +40,8 @@ public class WorkingInfoService {
 	public boolean startWorkingInfo(WorkingInfoVO workingInfoVO){
 		String wiDate = DateUtil.getDate("yyyyMMdd");
 		workingInfoVO.setWiDate(wiDate);
-		if(workingInfoMapper.getWorkingInfo(workingInfoVO)!=null) { //직급 명은 유니크이기 떄문에 조회 결과 null이 아닐 경우는 중복
-			return false; // 중복일 경우 실패로 처리 한다.
+		if(workingInfoMapper.getWorkingInfo(workingInfoVO)!=null) { 
+			return false; 
 		}
 		return workingInfoMapper.insertWorkingInfo(workingInfoVO) == 1 ? true : false;
 	}
@@ -51,8 +51,8 @@ public class WorkingInfoService {
 	}
 	
 	public boolean updateWorkingInfo(WorkingInfoVO workingInfoVO){
-		if(workingInfoMapper.getWorkingInfo(workingInfoVO)!=null) { // 위와 똑같음
-			return false; // 중복일 경우 실패로 처리 한다.
+		if(workingInfoMapper.getWorkingInfo(workingInfoVO)!=null) { 
+			return false; 
 		}
 		return workingInfoMapper.updateWorkingInfo(workingInfoVO) == 1 ? true : false;
 	}

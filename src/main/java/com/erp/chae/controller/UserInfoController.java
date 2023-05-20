@@ -53,11 +53,11 @@ public class UserInfoController {
 		//유저등록 실패를 가정한다.
 		model.addAttribute("msg","사원등록이 실패하였습니다.");
 		model.addAttribute("url","/views/user/sign-up");
-		if(uiService.signUp(uiVO)) { //true가 나왔다면 로그인이 성공했다고 본다.
+		if(uiService.signUp(uiVO)) { //true가 나왔다면 로그인 성공
 			model.addAttribute("msg","사원등록이 성공하였습니다.");
 			model.addAttribute("url","/");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 	
 	@PostMapping("/user/changePwd")
@@ -65,11 +65,11 @@ public class UserInfoController {
 		//일단 실패를 가정한다.
 		model.addAttribute("msg","비밀번호 변경이 실패하였습니다.");
 		model.addAttribute("url","/user/changePwd");
-		if(uiService.changePwd(uiVO, session)) { //true가 나왔다면 로그인이 성공했다고 본다.
+		if(uiService.changePwd(uiVO, session)) { 
 			model.addAttribute("msg","비밀번호 변경이 성공하였습니다.");
 			model.addAttribute("url","/users");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 	@PostMapping("/user/sign-in")
 	public String signIn(UserInfoVO uiVO, HttpSession session, Model model) {
@@ -77,7 +77,7 @@ public class UserInfoController {
 		String url = "/views/user/sign-in";
 		String msg = "로그인이 실패하였습니다.";
 		uiVO = uiService.signIn(uiVO, session);
-		if(uiVO!=null) { //true가 나왔다면 로그인이 성공했다고 본다.
+		if(uiVO!=null) { 
 			msg = "로그인이 성공하였습니다.";
 			url = "/users";
 			if("2".equals(uiVO.getUiLvl())) {
@@ -94,7 +94,7 @@ public class UserInfoController {
 		}
 		model.addAttribute("url",url);
 		model.addAttribute("msg",msg);
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	
@@ -103,7 +103,7 @@ public class UserInfoController {
 		session.invalidate();
 		model.addAttribute("msg","로그아웃 되었습니다.");
 		model.addAttribute("url","/views/user/signIn");
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 	
 	@GetMapping("/users")
@@ -115,7 +115,7 @@ public class UserInfoController {
 	
 	@GetMapping("/users/pwd")
 	public String userPwdInfos(Model model, @ModelAttribute UserInfoVO userInfoVO) {
-		userInfoVO.setActive("3");
+		userInfoVO.setActive("3"); //active=3인 애들
 		PageInfo<UserInfoVO> userList = uiService.getUserInfos(userInfoVO);
 		model.addAttribute("page",userList);
 		return "/views/user/pwd";
@@ -135,22 +135,22 @@ public class UserInfoController {
 		model.addAttribute("url","/users/out");
 		userInfoVO.setActive("0");
 		userInfoVO.setOutdat(DateUtil.getDate("yyyyMMdd"));
-		if(uiService.updateUserInfoActive(userInfoVO)) { //true가 나왔다면 로그인이 성공했다고 본다.
+		if(uiService.updateUserInfoActive(userInfoVO)) { 
 			model.addAttribute("msg","퇴직처리가 성공하였습니다.");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 	@PostMapping("/users/out/cancel")
 	public String outCancelUserInfo(Model model, @ModelAttribute UserInfoVO userInfoVO) {
 		//일단 실패를 가정한다.
 		model.addAttribute("msg","퇴직 취소 처리가 실패하였습니다.");
 		model.addAttribute("url","/users/out");
-		userInfoVO.setActive("1");
+		userInfoVO.setActive("1"); //active=1로
 		//userInfoVO.setOutdat("");
-		if(uiService.updateUserInfoActive(userInfoVO)) { //true가 나왔다면 로그인이 성공했다고 본다.
+		if(uiService.updateUserInfoActive(userInfoVO)) {
 			model.addAttribute("msg","퇴직 취소 처리가 성공하였습니다.");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 	@GetMapping("/users2")
 	public String userInfos2(Model model, @ModelAttribute UserInfoVO userInfoVO) {
@@ -210,7 +210,7 @@ public class UserInfoController {
 		if(uiService.pwdInit(userInfoVO)) {
 			msg = "비밀번호 초기화가 성공하였습니다.";
 			if("1".equals(userInfoVO.getActive())) {
-				msg = "비밀번호 초기화 신청 취소가 성공하였습니다.";
+				msg = "비밀번호 초기화 신청 취소를 성공하였습니다.";
 			}
 		}
 		model.addAttribute("msg",msg);

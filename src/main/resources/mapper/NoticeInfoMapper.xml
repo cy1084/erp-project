@@ -8,6 +8,7 @@
         , DATE_FORMAT(NI.CREDAT,'%Y-%m-%d') CREDAT, NI.CRETIM, NI.ACTIVE, NI.UI_NUM, UI.UI_NAME
 		FROM NOTICE_INFO NI
 		INNER JOIN USER_INFO UI ON NI.UI_NUM = UI.UI_NUM 
+		WHERE NI.ACTIVE = 1
 		ORDER BY NI.NI_NUM DESC
 	</select>
 
@@ -28,14 +29,15 @@
 		NI_FILE_PATH=#{niFilePath}
 		WHERE NI_NUM=#{niNum}
 	</update>
-	<update id="updateNoticeInfoCnt">
+	
+	<update id="updateNoticeInfoCnt"> <!-- 조회수 -->
 		UPDATE NOTICE_INFO 
 		SET NI_CNT = NI_CNT + 1
 		WHERE NI_NUM=#{niNum}
 	</update>
 
 	<delete id="deleteNoticeInfo">
-		UPDATE FROM NOTICE_INFO
+		UPDATE NOTICE_INFO
 		SET ACTIVE = 0
 		WHERE NI_NUM = #{niNum}
 	</delete>

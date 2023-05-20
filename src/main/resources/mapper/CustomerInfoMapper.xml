@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.erp.chae.mapper.CustomerInfoMapper">
+	<select id="getCustomerInfos" resultType="com.erp.chae.vo.CustomerInfoVO">
+		SELECT * FROM CUSTOMER_INFO 
+	</select>
+	
+	<select id="getCustomerInfo" resultType="com.erp.chae.vo.CustomerInfoVO">
+		SELECT * FROM CUSTOMER_INFO 
+		<where>
+			<if test='ciId != null and ciId != ""'>
+				AND CI_ID = #{ciId}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="insertCustomerInfo">
+		INSERT INTO CUSTOMER_INFO(CI_ID, CI_NAME, CI_AGE, CI_GRADE, CI_JOB, CI_POINT)
+		VALUES(#{ciId}, #{ciName}, #{ciAge}, #{ciGrade}, #{ciJob}, #{ciPoint})
+	</insert>
+	
+	<update id="updateCustomerInfo">
+		UPDATE CUSTOMER_INFO
+		SET CI_NAME = #{ciName}, 
+		CI_AGE = #{ciAge},
+		CI_GRADE = #{ciGrade},
+		CI_JOB = #{ciJob}, 
+		CI_POINT = #{ciPoint}
+		WHERE CI_ID = #{ciId}
+	</update>
+	
+	<delete id="deleteCustomerInfo">
+		DELETE FROM CUSTOMER_INFO 
+		WHERE CI_ID = #{ciId}
+	</delete>
+</mapper>

@@ -49,7 +49,7 @@ public class GradeInfoController {
 			model.addAttribute("msg","직급 등록이 실패하였습니다.");
 			model.addAttribute("url","/grade/view");
 			
-			if(gradeInfoService.insertGradeInfo(gradeInfoVO)) {//true가 나왔다면 직급 등록이 성공
+			if(gradeInfoService.insertGradeInfo(gradeInfoVO)) {//true가 나왔다면 직급 등록 성공
 				model.addAttribute("msg","직급 등록이 성공하였습니다.");
 				model.addAttribute("url","/grades");
 			}
@@ -63,11 +63,11 @@ public class GradeInfoController {
 		//일단 실패를 가정한다.
 		model.addAttribute("msg","직급 수정이 실패하였습니다.");
 		model.addAttribute("url","/grade/view?giNum=" + gradeInfoVO.getGiNum());
-		if(gradeInfoService.updateGradeInfo(gradeInfoVO)) {//true가 나왔다면 직급 수정이 성공
+		if(gradeInfoService.updateGradeInfo(gradeInfoVO)) {//true가 나왔다면 직급 수정 성공
 			model.addAttribute("msg","직급 수정이 성공하였습니다.");
 			model.addAttribute("url","/grades");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/grade/delete")
@@ -75,11 +75,11 @@ public class GradeInfoController {
 		//일단 실패를 가정한다.
 		model.addAttribute("msg","직급 삭제가 실패하였습니다.");
 		model.addAttribute("url","/grade/view?giNum=" + gradeInfoVO.getGiNum());
-		if(gradeInfoService.deleteGradeInfo(gradeInfoVO)) {//true가 나왔다면 직급 삭제가 성공
+		if(gradeInfoService.deleteGradeInfo(gradeInfoVO)) {//true가 나왔다면 직급 삭제 성공
 			model.addAttribute("msg","직급 삭제가 성공하였습니다.");
 			model.addAttribute("url","/grades");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 }

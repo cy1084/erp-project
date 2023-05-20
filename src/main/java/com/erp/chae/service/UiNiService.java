@@ -18,7 +18,7 @@ public class UiNiService {
 	public List<NoticeInfoVO> selectNotis(int uiNum) {
 		return unMapper.selectNotis(uiNum);
 	}
-	public int insertUiNiMap(NoticeInfoVO niVO, UserInfoVO uiVO) {
+	public int insertUiNiMap(NoticeInfoVO niVO, UserInfoVO uiVO) { 
 		
 		int cnt =  unMapper.insertUiNiMap(niVO);
 		uiVO.setNotis(selectNotis(uiVO.getUiNum()));

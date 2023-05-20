@@ -52,69 +52,69 @@ public class WorkingInfoController {
 
 	@PostMapping("/working/insert")
 	public String addWorkingInfo(Model model, @ModelAttribute WorkingInfoVO workingInfoVO) {
-		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","출퇴근정보 등록이 실패하였습니다.");
-		model.addAttribute("url","/working/view");
-		if(workingInfoService.startWorkingInfo(workingInfoVO)) {//true가 나왔다면 출퇴근정보 등록이 성공
+		model.addAttribute("url","/workings");
+		if(workingInfoService.startWorkingInfo(workingInfoVO)) {
 			model.addAttribute("msg","출퇴근정보 등록이 성공하였습니다.");
 			model.addAttribute("url","/workings");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/working/start")
 	public String startWorkingInfo(Model model, @ModelAttribute WorkingInfoVO workingInfoVO, HttpSession session) {
-		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","출퇴근정보 등록이 실패하였습니다.");
 		model.addAttribute("url","/notices");
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 		workingInfoVO.setUiNum(user.getUiNum());
-		if(workingInfoService.startWorkingInfo(workingInfoVO)) {//true가 나왔다면 출퇴근정보 등록이 성공
+		if(workingInfoService.startWorkingInfo(workingInfoVO)) {
 			session.setAttribute("user", userInfoService.getUserInfo(user));
 			model.addAttribute("msg","출퇴근정보 등록이 성공하였습니다.");
 			model.addAttribute("url","/notices");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/working/end")
 	public String endWorkingInfo(Model model, @ModelAttribute WorkingInfoVO workingInfoVO, HttpSession session) {
-		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","출퇴근정보 등록이 실패하였습니다.");
 		model.addAttribute("url","/notices");
 		UserInfoVO user = (UserInfoVO) session.getAttribute("user");
 		workingInfoVO.setUiNum(user.getUiNum());
 		workingInfoVO.setWiNum(user.getWiNum());
-		if(workingInfoService.endWorkingInfo(workingInfoVO)) {//true가 나왔다면 출퇴근정보 등록이 성공
+		if(workingInfoService.endWorkingInfo(workingInfoVO)) {
 			session.setAttribute("user", userInfoService.getUserInfo(user));
 			model.addAttribute("msg","출퇴근정보 등록이 성공하였습니다.");
 			model.addAttribute("url","/notices");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/working/update")
 	public String updateWorkingInfo(Model model, @ModelAttribute WorkingInfoVO workingInfoVO) {
-		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","출퇴근정보 수정이 실패하였습니다.");
 		model.addAttribute("url","/working/view?giNum=" + workingInfoVO.getWiNum());
-		if(workingInfoService.updateWorkingInfo(workingInfoVO)) {//true가 나왔다면 출퇴근정보 수정이 성공
+		if(workingInfoService.updateWorkingInfo(workingInfoVO)) {
 			model.addAttribute("msg","출퇴근정보 수정이 성공하였습니다.");
 			model.addAttribute("url","/workings");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 	@PostMapping("/working/delete")
 	public String deleteWorkingInfo(Model model, @ModelAttribute WorkingInfoVO workingInfoVO) {
-		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","출퇴근정보 삭제가 실패하였습니다.");
 		model.addAttribute("url","/working/view?giNum=" + workingInfoVO.getWiNum());
-		if(workingInfoService.deleteWorkingInfo(workingInfoVO)) {//true가 나왔다면 출퇴근정보 삭제가 성공
+		if(workingInfoService.deleteWorkingInfo(workingInfoVO)) {
 			model.addAttribute("msg","출퇴근정보 삭제가 성공하였습니다.");
 			model.addAttribute("url","/workings");
 		}
-		return "/views/common/msg"; //메세지를 보여줄 화면으로 이동
+		return "/views/common/msg"; 
 	}
 
 }

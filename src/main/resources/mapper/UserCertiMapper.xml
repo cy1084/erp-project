@@ -11,7 +11,7 @@
 			<if test='ucType != ""  and ucType != null'>
 				AND UC_TYPE = #{ucType}
 			</if>
-			<if test='uiNum != ""  and uiNum !=0'>
+			<if test='uiNum != ""  and uiNum !=0 and uiLvl !=1'>
 				AND UI.UI_NUM = #{uiNum}
 			</if>
 		</where>
@@ -23,7 +23,7 @@
 	</select>
 	
 	<insert id="insertUserCerti">
-		INSERT INTO USER_CERTI(UC_TYPE, UI_NUM)
+		INSERT INTO USER_CERTI(UC_TYPE, UI_NUM) <!-- ucType 재직증명서 용도 -->
 		VALUES(#{ucType}, #{uiNum})
 	</insert>
 	
@@ -34,7 +34,7 @@
 				, UC_TYPE = #{ucType}
 			</if>
 			<if test='ucActive != null and ucActive != ""'>
-				, UC_ACTIVE = #{ucActive}
+				, UC_ACTIVE = #{ucActive} <!-- ucActive 재직증명서 승인 여부 -->
 			</if>
 			<if test='periodStart != null and periodStart != ""'>
 				, PERIOD_START = #{periodStart}
@@ -54,7 +54,7 @@
 		WHERE UC_NUM=#{ucNum}
 	</update>
 	
-	<update id="deleteUserCerti">
+	<update id="deleteUserCerti"> <!-- 퇴사한 사람 -->
 		UPDATE USER_CERTI
 		SET UC_ACTIVE=0
 		WHERE UC_NUM=#{ucNum}

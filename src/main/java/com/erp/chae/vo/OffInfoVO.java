@@ -3,7 +3,7 @@ package com.erp.chae.vo;
 import lombok.Data;
 
 @Data
-public class OffInfoVO extends PageVO{ //offUseInfoVO
+public class OffInfoVO extends PageVO{ 
 	private int oiNum;
 	private String oiYear;
 	private int oiDay;

@@ -29,13 +29,19 @@
 		WHERE OUI_NUM = #{ouiNum}
 	</select>
 
+	<select id="getOffUseInfo2" resultType="com.erp.chae.vo.OffUseInfoVO">
+		SELECT * FROM OFF_USE_INFO
+		WHERE OUI_NUM = #{ouiNum}
+	</select>
+
 	<select id="getOffUseInfoByDay" resultType="com.erp.chae.vo.OffUseInfoVO">
 		SELECT * FROM OFF_USE_INFO
 		WHERE
 			(OUI_START BETWEEN #{ouiStart} and #{ouiEnd}
 			OR
 			OUI_END  BETWEEN #{ouiStart} and #{ouiEnd})
-			AND OUI_STATUS=1
+			AND (OUI_STATUS=1 or OUI_STATUS=2)
+			AND OI_NUM = #{oiNum}
 	</select>
 	
 	<insert id="insertOffUseInfo">

@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 	
 	public PostController() {
-		log.info("이게 실행되면 메모리가 생성되었다는 얘기임");
+		log.info("메모리 생성");
 	}
 	
 	// 글쓰기 페이지 /post/writeForm

@@ -27,8 +27,8 @@ public class UserCertiService {
 	}
 	
 	public boolean insertUserCerti(UserCertiVO userCertiVO){
-		if(userCertiMapper.getUserCerti(userCertiVO)!=null) { //직급 명은 유니크이기 떄문에 조회 결과 null이 아닐 경우는 중복
-			return false; // 중복일 경우 실패로 처리 한다.
+		if(userCertiMapper.getUserCerti(userCertiVO)!=null) { 
+			return false; 
 		}
 		return userCertiMapper.insertUserCerti(userCertiVO) == 1 ? true : false;
 	}

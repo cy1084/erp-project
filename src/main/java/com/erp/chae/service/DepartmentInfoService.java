@@ -30,7 +30,7 @@ public class DepartmentInfoService {
 	}
 	
 	public boolean updateDepartmentInfo(DepartmentInfoVO departmentInfoVO){
-		if(departmentInfoMapper.getDepartmentInfo(departmentInfoVO)!=null) { 
+		if(departmentInfoMapper.validationDepartmentInfo(departmentInfoVO)!=null) { 
 			return false; 
 		}
 		return departmentInfoMapper.updateDepartmentInfo(departmentInfoVO) == 1 ? true : false;

@@ -29,11 +29,6 @@ public class OffUseInfoService {
 	}
 	
 	public boolean insertOffUseInfo(OffUseInfoVO offUseInfoVO){
-		offUseInfoVO.setOuiStart(offUseInfoVO.getOuiStart().replace("-", ""));
-		offUseInfoVO.setOuiEnd(offUseInfoVO.getOuiEnd().replace("-", ""));
-		if(offUseInfoMapper.getOffUseInfoByDay(offUseInfoVO)!=null) { 
-			return false; 
-		}
 		return offUseInfoMapper.insertOffUseInfo(offUseInfoVO) == 1;
 	}
 

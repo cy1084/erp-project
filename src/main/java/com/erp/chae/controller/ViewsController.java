@@ -19,8 +19,9 @@ public class ViewsController {
 	private NoticeInfoService noticeInfoService;
 
 	@GetMapping("/views/**")
-	public void goPage() {
-		log.info("이건 views를 만족했음");
+	public void goPage() { 
+		//모든 jsp화면에 대한 매핑 
+		//url에 /views 로 시작할 경우 해당 메소드가 실행되어 /WEB-INF 안에 있는 jsp 화면 실행
 	}
 	@GetMapping("/")
 	public String home(Model model, @ModelAttribute NoticeInfoVO noticeInfoVO) {

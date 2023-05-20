@@ -37,6 +37,7 @@
 											<div class="mb-3">
 												<label class="form-label">아이디</label> 
 												<input class="form-control form-control-lg" type="text" name="uiId" value="${user.uiId}" disabled/>
+												<!-- disabled : input 태그를 사용자가 입력 및 수정을 못하게 비활성화하는 방법 -->
 											</div>
 											<div class="mb-3">
 												<label class="form-label">비밀번호</label> 

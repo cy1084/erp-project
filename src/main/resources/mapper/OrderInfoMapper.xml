@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="com.example.demo.mapper.OrderInfoMapper">
+	<select id="getOrderInfos" resultType="com.example.demo.vo.OrderInfoVO">
+		SELECT OI.*
+		,CI.CI_ID
+		,PI.PI_NUM 
+		FROM ORDER_INFO OI
+		INNER JOIN CUSTOMER_INFO CI ON OI.CI_ID=CI.CI_ID
+		INNER JOIN PRODUCT_INFO PI ON OI.PI_NUM=PI.PI_NUM
+	</select>
+	
+	<select id="getOrderInfo" resultType="com.example.demo.vo.OrderInfoVO">
+		SELECT OI.*
+		,CI.CI_ID
+		,PI.PI_NUM  
+		FROM ORDER_INFO OI
+		INNER JOIN CUSTOMER_INFO CI ON OI.CI_ID=CI.CI_ID
+		INNER JOIN PRODUCT_INFO PI ON OI.PI_NUM=PI.PI_NUM
+		WHERE OI_NUM = #{oiNum}			
+	</select>
+	
+	<insert id="insertOrderInfo">
+		INSERT INTO ORDER_INFO(CI_ID, PI_NUM, OI_AMOUNT, OI_ADDRESS)
+		VALUES(#{ciId}, #{piNum}, #{oiAmount}, #{oiAddress})
+	</insert>
+	
+	<update id="updateOrderInfo">
+		UPDATE ORDER_INFO
+		SET CI_ID = #{ciId}, 
+		PI_NUM = #{piNum},
+		OI_AMOUNT = #{oiAmount},
+		OI_ADDRESS = #{oiAddress} 		
+		WHERE OI_NUM = #{oiNum}
+	</update>
+	
+	<delete id="deleteOrderInfo">
+		DELETE FROM ORDER_INFO 
+		WHERE OI_NUM = #{oiNum}
+	</delete>
+</mapper>
