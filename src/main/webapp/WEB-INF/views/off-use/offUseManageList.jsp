@@ -31,6 +31,9 @@
 									<thead>
 										<tr>
 											<th>사원번호</th>
+											<th>이름</th>
+											<th>부서</th>
+											<th>직급</th>
 											<th>연차 타입</th>
 											<th>시작일</th>
 											<th>종료일</th>
@@ -48,6 +51,9 @@
 										<c:forEach items="${page.list}" var="offUse">
 											<tr>
 												<td>${offUse.uiId}</td>
+												<td>${offUse.uiName}</td>
+												<td>${offUse.diName}</td>
+												<td>${offUse.giName}</td>
 												<td>
 													<c:if test="${offUse.ouiType == '1'}">
 														휴가

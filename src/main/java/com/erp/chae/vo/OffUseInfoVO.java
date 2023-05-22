@@ -14,5 +14,7 @@ public class OffUseInfoVO extends PageVO{
 	private String uiId;
 	private int uiNum;
 	private String uiName;
+	private String giName;
+	private String diName;
 	private String url;
 }

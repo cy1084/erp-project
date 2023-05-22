@@ -38,4 +38,13 @@ public class UserInfoVO extends PageVO{
 	private MultipartFile uiFile;
 	private String uiFilePath;
 	private int oiNum;
+	private int uiBasepay;
+	private int uiExtension;
+	private int uiMeal;
+	private int uiCarmaintenance;
+	private int uiEdu;
+	private int uiSpecial;
+	private int uiRetirement;
+	
+	
 }
