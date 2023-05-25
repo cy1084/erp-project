@@ -6,11 +6,11 @@ function goPage(pathName){
 }
 //data-total="${page.total}" data-page-num="${page.pageNum}" data-block-size="10
 window.addEventListener('DOMContentLoaded', function(){
-	let pathName = window.location.href;
+	let {pathname} = window.location;
 	const menus = document.querySelectorAll('li.sidebar-item[data-menu]');
 	for(const menu of menus){
 		menu.classList.remove('active');
-		if(pathName === menu.getAttribute('data-menu')){
+		if(pathname === menu.getAttribute('data-menu')){
 			menu.classList.add('active');
 		}
 	}
@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', function(){
 			return;
 		}
 		
+		let pathName = window.location.href;
 		if(!pathName.includes('?')){
 			pathName += '?';
 		}

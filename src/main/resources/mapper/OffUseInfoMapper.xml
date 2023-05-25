@@ -23,6 +23,12 @@
 			<if test='ouiStatus != "" and ouiStatus != null'>
 				AND OUI.OUI_STATUS = #{ouiStatus}
 			</if>
+			<if test='diNum != "" and diNum != 0'>
+				AND UI.DI_NUM = #{diNum}
+			</if>
+			<if test='giNum != "" and giNum != 0'>
+				AND UI.GI_NUM &lt; #{giNum}
+			</if>
 		</where>
 	</select>
 

@@ -30,31 +30,39 @@
 					class="align-middle">로그인</span>
 			</a></li>
 			</c:if>
-			
 			<c:if test="${user != null && user.uiLvl == '2' && loginUser.uiLvl != '1'}">
-			<li class="sidebar-item" " data-menu="/user/profile"><a class="sidebar-link"
+			<li class="sidebar-item"  data-menu="/user/profile"><a class="sidebar-link"
 				href="${pageContext.request.contextPath}/user/profile?uiNum=${sessionScope.user.uiNum}"> <i class="align-middle"
 					data-feather="user"></i> <span class="align-middle">프로필</span>
 			</a></li>
 			
-			<li class="sidebar-item" " data-menu="/users2"><a class="sidebar-link"
+			<li class="sidebar-item"  data-menu="/users2"><a class="sidebar-link"
 				href="/users2"> <i class="align-middle"
 					data-feather="users"></i> <span class="align-middle">사원 정보</span>
 			</a></li>
-			<li class="sidebar-item" " data-menu="/working/view"><a class="sidebar-link"
+			<li class="sidebar-item"  data-menu="/working/view"><a class="sidebar-link"
 				href="/working/view"> <i class="align-middle"
 					data-feather="clock"></i> <span class="align-middle">근태 정보</span>
 			</a></li>
-			<!--  <li class="sidebar-item" " data-menu="/salary/my_view"><a class="sidebar-link"
+			<!--  <li class="sidebar-item"  data-menu="/salary/my_view"><a class="sidebar-link"
 				href="/salary/my_view"> <i class="align-middle"
 					data-feather="file-text"></i> <span class="align-middle">급여 정보</span>
 			</a></li>
 			-->
-			<li class="sidebar-item" " data-menu="/off-uses"><a class="sidebar-link"
+			<li class="sidebar-item"  data-menu="/off-uses"><a class="sidebar-link"
 				href="/off-uses"> <i class="align-middle"
 					data-feather="align-left"></i> <span class="align-middle">연차 정보</span>
 			</a></li>
 
+			
+			<c:if test="${user != null && user.uiLvl == '2' && user.giNum > 1}">
+				<li class="sidebar-item" data-menu="/off-uses-manage">
+					<a class="sidebar-link" href="/off-uses-manage?giNum=${user.giNum}&diNum=${user.diNum}"> 
+						<i class="align-middle" data-feather="align-left"></i> 
+						<span class="align-middle">연차 관리</span>
+					</a>
+				</li>
+			</c:if>
 			<li class="sidebar-item active" data-menu="/certies"><a class="sidebar-link"
 				href="/certies?uiNum=${sessionScope.user.uiNum}"> <i class="align-middle"
 					data-feather="bell"></i> <span class="align-middle">재직증명서 신청</span>
@@ -103,14 +111,6 @@
 					<span class="align-middle">직급 관리</span>
 				</a>
 			</li>
-			
-			<!--  <li class="sidebar-item" data-menu="/offs">
-				<a class="sidebar-link" href="/offs"> 
-					<i class="align-middle" data-feather="align-left"></i> 
-					<span class="align-middle">연차 정보</span>
-				</a>
-			</li>
-			-->
 			
 			<li class="sidebar-item" data-menu="/off-uses-manage">
 				<a class="sidebar-link" href="/off-uses-manage"> 
