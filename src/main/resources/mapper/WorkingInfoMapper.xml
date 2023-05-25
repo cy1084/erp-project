@@ -28,6 +28,23 @@
 			</if>
 		</where>
 	</select>
+
+	<select id="getWorkingInfosByUiNum" resultType="com.erp.chae.vo.WorkingInfoVO">
+		SELECT 
+		DATE_FORMAT(WI.WI_DATE,'%Y-%m-%d') WI_DATE,
+		DATE_FORMAT(STR_TO_DATE(WI.WI_START,'%H%i%s'),'%T') WI_START,
+		DATE_FORMAT(STR_TO_DATE(WI.WI_END,'%H%i%s'),'%T') WI_END
+		,WI.WI_ETC
+		,UI.UI_NAME
+		,UI.UI_ID
+		,DI.DI_NAME
+		,GI.GI_NAME 
+		FROM WORKING_INFO WI
+		INNER JOIN USER_INFO UI ON UI.UI_NUM = WI.UI_NUM
+		INNER JOIN DEPART_INFO DI ON UI.DI_NUM = DI.DI_NUM
+		INNER JOIN GRADE_INFO GI ON UI.GI_NUM = GI.GI_NUM 	
+		WHERE UI.UI_ID LIKE CONCAT('%',#{uiId},'%')
+	</select>
 	
 	<select id="getWorkingInfo" resultType="com.erp.chae.vo.WorkingInfoVO">
 		SELECT * FROM WORKING_INFO 

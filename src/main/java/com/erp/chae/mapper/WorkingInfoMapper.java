@@ -8,6 +8,8 @@ public interface WorkingInfoMapper {
 	
 	List<WorkingInfoVO> getWorkingInfos(WorkingInfoVO workingInfoVO);
 	
+	List<WorkingInfoVO> getWorkingInfosByUiNum(int uiNum);	
+	
 	WorkingInfoVO getWorkingInfo(WorkingInfoVO workingInfoVO);
 	
 	List<WorkingInfoVO> getWorkingInfo2(WorkingInfoVO workingInfoVO);

@@ -21,6 +21,13 @@ public class OffInfoService {
 		List<OffInfoVO> list = offInfoMapper.getOffInfos(offInfoVO);
 		return new PageInfo<>(list);
 	}
+
+	public PageInfo<OffInfoVO> getOffInfosByUiNum(OffInfoVO offInfoVO){
+		PageHelper.startPage(offInfoVO.getPage(), offInfoVO.getRows());
+		List<OffInfoVO> list = offInfoMapper.getOffInfosByUiNum(offInfoVO.getUiNum());
+		return new PageInfo<>(list);
+	}
+	
 	
 	public OffInfoVO getOffInfo(OffInfoVO offInfoVO){
 		return offInfoMapper.getOffInfo(offInfoVO);

@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.erp.chae.service.DepartmentInfoService;
 import com.erp.chae.service.GradeInfoService;
+import com.erp.chae.service.OffInfoService;
 import com.erp.chae.service.UserCertiService;
 import com.erp.chae.service.UserInfoService;
+import com.erp.chae.service.WorkingInfoService;
 import com.erp.chae.util.DateUtil;
 import com.erp.chae.vo.UserInfoVO;
+import com.erp.chae.vo.WorkingInfoVO;
 import com.github.pagehelper.PageInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +42,13 @@ public class UserInfoController {
 
 	@Autowired
 	private GradeInfoService giService;
+
+	
+	@Autowired
+	private WorkingInfoService wiService;
+	
+	@Autowired
+	private OffInfoService oiService;
 	
 
 	@GetMapping("/user/sign-up")
@@ -63,6 +73,7 @@ public class UserInfoController {
 	@PostMapping("/user/changePwd")
 	public String changePwd(UserInfoVO uiVO, HttpSession session, Model model) {
 		//일단 실패를 가정한다.
+		
 		model.addAttribute("msg","비밀번호 변경이 실패하였습니다.");
 		model.addAttribute("url","/user/changePwd");
 		if(uiService.changePwd(uiVO, session)) { 
@@ -102,7 +113,7 @@ public class UserInfoController {
 	public String logout(HttpSession session, Model model) {
 		session.invalidate();
 		model.addAttribute("msg","로그아웃 되었습니다.");
-		model.addAttribute("url","/views/user/signIn");
+		model.addAttribute("url","/views/user/sign-in");
 		return "/views/common/msg"; 
 	}
 	
@@ -169,12 +180,30 @@ public class UserInfoController {
 		model.addAttribute("page",userList2);
 		return "/views/user/userList2";
 	}
-	
+
 	
 	@GetMapping("/user/view")
-	public String userInfo(Model model, @ModelAttribute UserInfoVO userInfoVO) {
+	public String userInfo(Model model, @ModelAttribute UserInfoVO userInfoVO, HttpSession session) {
 		UserInfoVO user = uiService.getUserInfo(userInfoVO);
+		model.addAttribute("departmentList", diService.getDepartmentInfos(null));
+		model.addAttribute("gradeList", giService.getGradeInfos(null));
 		model.addAttribute("user",user);
+		userInfoVO.getWorking().setUiNum(userInfoVO.getUiNum());
+		model.addAttribute("wiPage", wiService.getWorkingInfosByUiNum(userInfoVO.getWorking()));
+		userInfoVO.getOff().setUiNum(userInfoVO.getUiNum());
+		model.addAttribute("oiPage", oiService.getOffInfosByUiNum(userInfoVO.getOff()));
+		
+		// 관리자 메뉴 ulLvl 
+		UserInfoVO loginUser = (UserInfoVO) session.getAttribute("user");
+		model.addAttribute("loginUser", loginUser);
+		
+		return "/views/user/userView";
+	}
+	
+	@GetMapping("/user/card")
+	public String profile(Model model, @ModelAttribute UserInfoVO userInfoVO) {
+		model.addAttribute("user",uiService.getUserInfo(userInfoVO));
+
 		return "/views/user/userCard";
 	}
 	
@@ -198,6 +227,16 @@ public class UserInfoController {
 		model.addAttribute("user",user);
 		model.addAttribute("date",DateUtil.getDate("yyyy년 MM월 dd일"));
 		return "/views/user/userCerti";
+	}
+	
+	@PostMapping("/user/updates")
+	public String updateUserInfoByUiNum(Model model, @ModelAttribute UserInfoVO userInfoVO, HttpSession session) {
+		model.addAttribute("msg","사원 수정이 실패하였습니다.");
+		model.addAttribute("url","/user/view?uiNum=" + userInfoVO.getUiNum()+ "&working.page=1&off.page=1");
+		if(uiService.updateUserInfoByUiNum(userInfoVO, session)) {
+			model.addAttribute("msg","사원 수정이 성공하였습니다.");
+		}
+		return "/views/common/msg"; 
 	}
 	
 	@PostMapping("/user/update")

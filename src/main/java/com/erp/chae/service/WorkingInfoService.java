@@ -1,6 +1,8 @@
 package com.erp.chae.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,11 @@ public class WorkingInfoService {
 	public PageInfo<WorkingInfoVO> getWorkingInfos(WorkingInfoVO workingInfoVO){
 		PageHelper.startPage(workingInfoVO.getPage(), workingInfoVO.getRows());
 		return new PageInfo<>(workingInfoMapper.getWorkingInfos(workingInfoVO));
+	}
+
+	public PageInfo<WorkingInfoVO> getWorkingInfosByUiNum(WorkingInfoVO workingInfoVO){
+		PageHelper.startPage(workingInfoVO.getPage(), workingInfoVO.getRows());
+		return new PageInfo<>(workingInfoMapper.getWorkingInfosByUiNum(workingInfoVO.getUiNum()));
 	}
 	
 	public WorkingInfoVO getWorkingInfo(WorkingInfoVO workingInfoVO){

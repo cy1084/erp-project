@@ -25,7 +25,7 @@
 								<table class="table table-hover my-0" data-pages="${page.pages}" data-page-num="${page.pageNum}">
 									<thead>
 										<tr>
-										<th>No.</th>
+											<th>No.</th>
 											<th>날짜</th>												
 											<th>출근 시간</th>
 											<th>퇴근 시간</th>
@@ -43,7 +43,6 @@
 												style="cursor: pointer">
 												<td></td>
 												<td>${working.wiDate}</td>												
-																								
 												<td>${working.wiStart}</td>
 												<td>${working.wiEnd}</td>
 												<td>${working.wiEtc}</td>

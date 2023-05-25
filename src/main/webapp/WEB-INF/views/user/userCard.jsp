@@ -130,7 +130,7 @@ th, td {
 				</c:if>
 			</div>
 			</div>
-			<form action="/user/view" method="GET" value="${user.uiNum}">		
+			<form action="/user/card" method="GET" value="${user.uiNum}">		
 				<table class="center">
 				<tr>
 					<th class="border borderleft">성명</th>

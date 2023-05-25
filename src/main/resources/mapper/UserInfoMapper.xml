@@ -60,6 +60,13 @@
 		 , DATE_FORMAT(WI.WI_DATE,'%Y-%m-%d') WI_DATE
 		 , DATE_FORMAT(STR_TO_DATE(WI.WI_ETC,'%H:%i:%s'),'%T') WI_ETC
 		 , OI.OI_NUM
+		 , UI.UI_BASEPAY
+		 , UI.UI_EXTENSION
+		 , UI.UI_MEAL
+		 , UI.UI_CARMAINTENANCE
+		 , UI.UI_EDU
+		 , UI.UI_SPECIAL
+		 , UI.UI_RETIREMENT
 		 FROM USER_INFO UI
 		INNER JOIN DEPART_INFO DI ON UI.DI_NUM = DI.DI_NUM
 		INNER JOIN GRADE_INFO GI ON UI.GI_NUM = GI.GI_NUM
@@ -92,9 +99,9 @@
 	<!--  useGeneratedKeys : insert나 update됨이 동시에 자동생성된 키를 가져올 수 있는 속성 -->
 	<!--  리턴 될 key property 설정. 즉 values나 set 다음에 오는 컬럼명과 동일하게 설정하면 됨 -->
 		INSERT INTO USER_INFO(UI_NAME, UI_TRANS, UI_BIRTH, UI_EMAIL, UI_ADDRESS, DI_NUM, GI_NUM, UI_LVL, UI_DUTIES, ACTIVE, UI_FILE_PATH
-		, CREDAT, CRETIM)
+		, CREDAT, CRETIM, UI_BASEPAY, UI_EXTENSION, UI_MEAL, UI_CARMAINTENANCE, UI_EDU, UI_SPECIAL, UI_RETIREMENT)
 		VALUES( #{uiName},#{uiTrans},#{uiBirth},#{uiEmail},#{uiAddress},#{diNum}, #{giNum}, #{uiLvl}, #{uiDuties}, 2, #{uiFilePath}
-		,DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%s'))
+		,DATE_FORMAT(NOW(),'%Y%m%d'), DATE_FORMAT(NOW(),'%H%i%s'), #{uiBasepay}, #{uiExtension}, #{uiMeal}, #{uiCarmaintenance}, #{uiEdu}, #{uiSpecial}, #{uiRetirement})
 	</insert>
 	
 	<update id="updateUserInfo">
@@ -129,6 +136,85 @@
 			</if>
 			<if test='uiFilePath != null and uiFilePath != ""'>
 				UI_FILE_PATH = #{uiFilePath},
+			</if>
+			<if test='uiBasepay != null and uiBasepay != 0'>
+				UI_BASEPAY = #{uiBasepay},
+			</if>
+			<if test='uiExtension != null and uiExtension != 0'>
+				UI_EXTENSION = #{uiExtension},
+			</if>
+			<if test='uiMeal != null and uiMeal != 0'>
+				UI_MEAL = #{uiMeal},
+			</if>
+			<if test='uiCarmaintenance != null and uiCarmaintenance != 0'>
+				UI_CARMAINTENANCE = #{uiCarmaintenance},
+			</if>
+			<if test='uiEdu != null and uiEdu != 0'>
+				UI_EDU = #{uiEdu},
+			</if>
+			<if test='uiSpecial != null and uiSpecial != 0'>
+				UI_SPECIAL = #{uiSpecial},
+			</if>
+			<if test='uiRetirement != null and uiRetirement != 0'>
+				UI_RETIREMENT = #{uiRetirement},
+			</if>
+		</set>
+		WHERE UI_NUM = #{uiNum}
+	</update>
+	
+	<update id="updateUserInfoByUiNum">
+		UPDATE USER_INFO
+		<set>
+			<if test='uiName != null and uiName != ""'>
+				UI_NAME = #{uiName}, 
+			</if>
+			<if test='uiPwd != null and uiPwd != ""'>
+				UI_PWD = #{uiPwd},
+			</if>
+			<if test='uiBirth != null and uiBirth != ""'>
+				UI_BIRTH = #{uiBirth},
+			</if>
+			<if test='uiTrans != null and uiTrans != ""'>
+				UI_TRANS = #{uiTrans},
+			</if>
+			<if test='uiEmail != null and uiEmail != ""'>
+				UI_EMAIL = #{uiEmail},
+			</if>
+			<if test='uiAddress != null and uiAddress != ""'>
+				UI_ADDRESS = #{uiAddress},
+			</if>
+			<if test='uiDuties != null and uiDuties != ""'>
+				UI_DUTIES = #{uiDuties},
+			</if>
+			<if test='diNum != 0'>
+				DI_NUM = #{diNum},
+			</if>
+			<if test='giNum != 0'>
+				GI_NUM = #{giNum},
+			</if>
+			<if test='uiFilePath != null and uiFilePath != ""'>
+				UI_FILE_PATH = #{uiFilePath},
+			</if>
+			<if test='uiBasepay != null and uiBasepay != 0'>
+				UI_BASEPAY = #{uiBasepay},
+			</if>
+			<if test='uiExtension != null and uiExtension != 0'>
+				UI_EXTENSION = #{uiExtension},
+			</if>
+			<if test='uiMeal != null and uiMeal != 0'>
+				UI_MEAL = #{uiMeal},
+			</if>
+			<if test='uiCarmaintenance != null and uiCarmaintenance != 0'>
+				UI_CARMAINTENANCE = #{uiCarmaintenance},
+			</if>
+			<if test='uiEdu != null and uiEdu != 0'>
+				UI_EDU = #{uiEdu},
+			</if>
+			<if test='uiSpecial != null and uiSpecial != 0'>
+				UI_SPECIAL = #{uiSpecial},
+			</if>
+			<if test='uiRetirement != null and uiRetirement != 0'>
+				UI_RETIREMENT = #{uiRetirement},
 			</if>
 		</set>
 		WHERE UI_NUM = #{uiNum}

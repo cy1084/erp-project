@@ -107,6 +107,23 @@ public class UserInfoService {
 		return false;
 	}
 	
+	public boolean updateUserInfoByUiNum(UserInfoVO userInfoVO, HttpSession session){
+				
+		if(userInfoMapper.getUserInfoByIdAndPwd(userInfoVO)!=null) { 
+			return false;
+		}
+		UserInfoVO userVO = (UserInfoVO) session.getAttribute("user");
+		userInfoVO.setUiNum(userInfoVO.getUiNum());
+		userInfoVO.setUiBirth(userInfoVO.getUiBirth());
+		
+		int result =  userInfoMapper.updateUserInfoByUiNum(userInfoVO);
+		if(result==1) {
+			reloadSession(session);
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean updateUserInfoActive(UserInfoVO userInfoVO){
 		return userInfoMapper.updateUserInfoActive(userInfoVO) == 1;
 	}

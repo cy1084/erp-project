@@ -31,7 +31,7 @@
 			</a></li>
 			</c:if>
 			
-			<c:if test="${user != null && user.uiLvl == '2'}">
+			<c:if test="${user != null && user.uiLvl == '2' && loginUser.uiLvl != '1'}">
 			<li class="sidebar-item" " data-menu="/user/profile"><a class="sidebar-link"
 				href="${pageContext.request.contextPath}/user/profile?uiNum=${sessionScope.user.uiNum}"> <i class="align-middle"
 					data-feather="user"></i> <span class="align-middle">프로필</span>
@@ -45,11 +45,12 @@
 				href="/working/view"> <i class="align-middle"
 					data-feather="clock"></i> <span class="align-middle">근태 정보</span>
 			</a></li>
-			<li class="sidebar-item" " data-menu="/salary/my_view"><a class="sidebar-link"
+			<!--  <li class="sidebar-item" " data-menu="/salary/my_view"><a class="sidebar-link"
 				href="/salary/my_view"> <i class="align-middle"
 					data-feather="file-text"></i> <span class="align-middle">급여 정보</span>
 			</a></li>
-			<li class="sidebar-item" " data-menu="/ooff-uses"><a class="sidebar-link"
+			-->
+			<li class="sidebar-item" " data-menu="/off-uses"><a class="sidebar-link"
 				href="/off-uses"> <i class="align-middle"
 					data-feather="align-left"></i> <span class="align-middle">연차 정보</span>
 			</a></li>
@@ -60,7 +61,7 @@
 			</a></li>
 			</c:if>
 
-			<c:if test="${user != null && user.uiLvl == '1'}">
+			<c:if test="${(user != null && user.uiLvl == '1')|| loginUser.uiLvl == '1'}">
 			<li class="sidebar-header">ADMIN</li>
 
 			<li class="sidebar-item" data-menu="/user/sign-up"><a class="sidebar-link"
@@ -77,11 +78,12 @@
 				href="/workings"> <i class="align-middle"
 					data-feather="clock"></i> <span class="align-middle">근태 관리</span>
 			</a></li>
- 			<li class="sidebar-item" data-menu="/salaries">
+ 			
+ 			<!--  <li class="sidebar-item" data-menu="/salaries">
  				<a class="sidebar-link" href="/salaries"><i class="align-middle"
 					data-feather="file-text"></i> <span class="fas fa-arrow-down">급여 관리</span></a>
  			</li>
- 			
+ 			-->
  			
 			<li class="sidebar-item" data-menu="/users/out"><a class="sidebar-link"
 				href="/users/out"> <i class="align-middle"
@@ -102,12 +104,13 @@
 				</a>
 			</li>
 			
-			<li class="sidebar-item" data-menu="/offs">
+			<!--  <li class="sidebar-item" data-menu="/offs">
 				<a class="sidebar-link" href="/offs"> 
 					<i class="align-middle" data-feather="align-left"></i> 
 					<span class="align-middle">연차 정보</span>
 				</a>
 			</li>
+			-->
 			
 			<li class="sidebar-item" data-menu="/off-uses-manage">
 				<a class="sidebar-link" href="/off-uses-manage"> 

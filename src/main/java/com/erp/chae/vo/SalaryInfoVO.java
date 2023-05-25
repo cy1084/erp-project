@@ -1,5 +1,7 @@
 package com.erp.chae.vo;
 
+import com.erp.chae.vo.PageVO;
+
 import lombok.Data;
 
 @Data

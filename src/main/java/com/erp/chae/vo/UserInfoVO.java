@@ -45,6 +45,8 @@ public class UserInfoVO extends PageVO{
 	private int uiEdu;
 	private int uiSpecial;
 	private int uiRetirement;
+	private WorkingInfoVO working;
+	private OffInfoVO off;
 	
 	
 }

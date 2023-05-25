@@ -15,6 +15,7 @@
 			<main class="content">
 				<div class="container-fluid p-0">
 					<div class="row">
+					<h1 class="h3 mb-3"><strong>연차 관리</strong></h1>
 						<div class="col-12 col-lg-8 col-xxl-9 d-flex">
 							<div class="card flex-fill">
 								<form action="/off-uses-manage" method="GET">

@@ -7,6 +7,8 @@ public interface UserInfoMapper {
 	
 	List<UserInfoVO> getUserInfos(UserInfoVO uiVO);
 	
+	UserInfoVO getUserInfo(UserInfoVO uiVO);
+	
 	UserInfoVO getUserInfoById(UserInfoVO uiVO);
 	
 	UserInfoVO getUserInfoByNum(UserInfoVO uiVO);
@@ -18,6 +20,8 @@ public interface UserInfoMapper {
 	int signUp(UserInfoVO uiVO);
 	
 	int updateUserInfo(UserInfoVO uiVO);
+	
+	int updateUserInfoByUiNum(UserInfoVO uiVO);
 	
 	int updateUserInfoActive(UserInfoVO uiVO);
 

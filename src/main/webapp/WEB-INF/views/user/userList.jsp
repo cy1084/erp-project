@@ -51,9 +51,9 @@
 											</tr>
 										</c:if>
 										<c:forEach items="${page.list}" var="user">
-											<tr>
+											<tr style="cursor:pointer">
 												<td>${user.uiNum}</td>
-												<td>${user.uiId}</td>
+												<td><a href="/user/view?uiNum=${user.uiNum}&working.page=1&off.page=1">${user.uiId}</a></td>
 												<td>${user.uiName}</td>
 												<td>${user.giName}</td>
 												<td>${user.diName}</td>
@@ -71,7 +71,7 @@
 													</c:if>
 												</td>
 												<td>
-													<button onclick="goPage('/user/view?uiNum=${user.uiNum}&page=${page.pageNum}&print=true')">출력</button>
+													<button onclick="goPage('/user/card?uiNum=${user.uiNum}&page=${page.pageNum}&print=true')">출력</button>
 												</td>
 												<td>
 													<button type="button" onclick="userOut('${user.uiNum}','${user.active}')">
