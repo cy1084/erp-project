@@ -32,4 +32,6 @@ public interface UserInfoMapper {
 	int pwdInit(UserInfoVO userInfoVO);
 	
 	int deleteUserInfo(UserInfoVO userInfoVO);
+	
+	int changeActive();
 }

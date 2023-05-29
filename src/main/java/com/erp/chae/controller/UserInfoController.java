@@ -121,6 +121,7 @@ public class UserInfoController {
 	public String userInfos(Model model, @ModelAttribute UserInfoVO userInfoVO) {
 		PageInfo<UserInfoVO> userList = uiService.getUserInfos(userInfoVO);
 		model.addAttribute("page",userList);
+		model.addAttribute("departmentList", diService.getDepartmentInfos(null));
 		return "/views/user/userList";
 	}
 	

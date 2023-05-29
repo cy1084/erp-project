@@ -25,7 +25,13 @@
 							 	<input type="text" name="searchValue" value="${param.searchValue}" placeholder="사원번호 또는 이름을 입력해주세요.">
 							 	 -->
 							 	<input type="text" name="uiId" value="${param.uiId}" placeholder="사원번호를 입력해주세요.">
-							 	<input type="text" name="uiName" value="${param.uiName}" placeholder="이름을 입력해주세요.">						 	
+							 	<input type="text" name="uiName" value="${param.uiName}" placeholder="이름을 입력해주세요.">
+							 	<select class="form-select mb-3" name="diNum">
+									<option selected>선택</option>
+									<c:forEach items="${departmentList}" var="depart">
+									<option value="${depart.diNum}" ${param.diNum==depart.diNum?'selected':''}>${depart.diName}</option>
+									</c:forEach>
+								</select>						 	
 								<button>검색</button>
 								</form>
 								<table class="table table-hover my-0" data-pages="${page.pages}" data-page-num="${page.pageNum}"><!-- total 페이지, 현재 페이지 -->

@@ -15,6 +15,9 @@
 			<if test='uiName != null and uiName != ""'>
 				AND UI.UI_NAME LIKE CONCAT('%',#{uiName},'%')
 			</if>
+			<if test='diNum != null and diNum != 0'>
+				AND UI.DI_NUM = #{diNum}
+			</if>
 			<if test='active != null and active != ""'>
 				AND UI.ACTIVE = #{active}
 			</if>
@@ -94,7 +97,14 @@
 		UI_PWD = #{uiPwd}
 		WHERE UI_NUM = #{uiNum}
 	</update>
-	
+	<update id="changeActive">
+		UPDATE USER_INFO
+		SET ACTIVE='1',
+		CREDAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+		CRETIM = DATE_FORMAT(NOW(),'%H%i%s')
+		WHERE ACTIVE = '2'
+	</update>
+		
 	<insert id="signUp" useGeneratedKeys="true" keyColumn="UI_NUM" keyProperty="uiNum">
 	<!--  useGeneratedKeys : insert나 update됨이 동시에 자동생성된 키를 가져올 수 있는 속성 -->
 	<!--  리턴 될 key property 설정. 즉 values나 set 다음에 오는 컬럼명과 동일하게 설정하면 됨 -->
